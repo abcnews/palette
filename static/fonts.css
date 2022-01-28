@@ -1,0 +1,178 @@
+/* ------------------------------
+ * webfont
+ * ---------------------------- */
+
+@font-face {
+	font-family: 'ABCSans';
+	font-weight: 300;
+	font-style: normal;
+	src: url('//res.abc.net.au/fonts/abcsansnova/abcsansnova-light.woff2') format('woff2'),
+		url('//res.abc.net.au/fonts/abcsansnova/abcsansnova-light.woff') format('woff');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'ABCSans';
+	font-weight: 400;
+	font-style: normal;
+	src: url('//res.abc.net.au/fonts/abcsansnova/abcsansnova-regular.woff2') format('woff2'),
+		url('//res.abc.net.au/fonts/abcsansnova/abcsansnova-regular.woff') format('woff');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'ABCSans';
+	font-weight: bold;
+	font-style: normal;
+	src: url('//res.abc.net.au/fonts/abcsansnova/abcsansnova-bold.woff2') format('woff2'),
+		url('//res.abc.net.au/fonts/abcsansnova/abcsansnova-bold.woff') format('woff');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'ABCSans';
+	font-weight: 900;
+	font-style: normal;
+	src: url('//res.abc.net.au/fonts/abcsansnova/abcsansnova-black.woff2') format('woff2'),
+		url('//res.abc.net.au/fonts/abcsansnova/abcsansnova-black.woff') format('woff');
+	font-display: swap;
+}
+
+/* italics */
+@font-face {
+	font-family: 'ABCSans';
+	font-weight: 300;
+	font-style: italic;
+	src: url('//res.abc.net.au/fonts/abcsansnova/abcsansnova-lightitalic.woff2') format('woff2'),
+		url('//res.abc.net.au/fonts/abcsansnova/abcsansnova-lightitalic.woff') format('woff');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'ABCSans';
+	font-weight: 400;
+	font-style: italic;
+	src: url('//res.abc.net.au/fonts/abcsansnova/abcsansnova-italic.woff2') format('woff2'),
+		url('//res.abc.net.au/fonts/abcsansnova/abcsansnova-italic.woff') format('woff');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'ABCSans';
+	font-weight: bold;
+	font-style: italic;
+	src: url('//res.abc.net.au/fonts/abcsansnova/abcsansnova-bolditalic.woff2') format('woff2'),
+		url('//res.abc.net.au/fonts/abcsansnova/abcsansnova-bolditalic.woff') format('woff');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'ABCSans';
+	font-weight: 900;
+	font-style: italic;
+	src: url('//res.abc.net.au/fonts/abcsansnova/abcsansnova-blackitalic.woff2') format('woff2'),
+		url('//res.abc.net.au/fonts/abcsansnova/abcsansnova-blackitalic.woff') format('woff');
+	font-display: swap;
+}
+
+/* condensed */
+@font-face {
+	font-family: 'ABCSans Condensed';
+	font-weight: 300;
+	font-style: normal;
+	src: url('//res.abc.net.au/fonts/abcsansnova/abcsansnova-condensedlight.woff2') format('woff2'),
+		url('//res.abc.net.au/fonts/abcsansnova/abcsansnova-condensedlight.woff') format('woff');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'ABCSans Condensed';
+	font-weight: 400;
+	font-style: normal;
+	src: url('//res.abc.net.au/fonts/abcsansnova/abcsansnova-condensedbold.woff2') format('woff2'),
+		url('//res.abc.net.au/fonts/abcsansnova/abcsansnova-condensedbold.woff') format('woff');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'ABCSans Condensed';
+	font-weight: bold;
+	font-style: normal;
+	src: url('//res.abc.net.au/fonts/abcsansnova/abcsansnova-condensedbold.woff2') format('woff2'),
+		url('//res.abc.net.au/fonts/abcsansnova/abcsansnova-condensedbold.woff') format('woff');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'ABCSans Condensed';
+	font-weight: 900;
+	font-style: normal;
+	src: url('//res.abc.net.au/fonts/abcsansnova/abcsansnova-condensedbold.woff2') format('woff2'),
+		url('//res.abc.net.au/fonts/abcsansnova/abcsansnova-condensedbold.woff') format('woff');
+	font-display: swap;
+}
+
+/* rounded */
+@font-face {
+	font-family: 'ABCSans Rounded';
+	font-weight: 400;
+	font-style: normal;
+	src: url('//res.abc.net.au/fonts/abcsansnova/abcsansnova-rounded.woff2') format('woff2'),
+		url('//res.abc.net.au/fonts/abcsansnova/abcsansnova-rounded.woff') format('woff');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'ABCSans Rounded';
+	font-weight: bold;
+	font-style: normal;
+	src: url('//res.abc.net.au/fonts/abcsansnova/abcsansnova-roundedbold.woff2') format('woff2'),
+		url('//res.abc.net.au/fonts/abcsansnova/abcsansnova-roundedbold.woff') format('woff');
+	font-display: swap;
+}
+
+/* tabular numbers */
+@font-face {
+	font-family: 'ABCSans Tabbed';
+	font-weight: 300;
+	font-style: normal;
+	src: url('//res.abc.net.au/fonts/abcsans/abcsans-light-tabnumbers.woff2') format('woff2'),
+		url('//res.abc.net.au/fonts/abcsans/abcsans-light-tabnumbers.woff') format('woff');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'ABCSans Tabbed';
+	font-weight: 400;
+	font-style: normal;
+	src: url('//res.abc.net.au/fonts/abcsans/abcsans-regular-tabnumbers.woff2') format('woff2'),
+		url('//res.abc.net.au/fonts/abcsans/abcsans-regular-tabnumbers.woff') format('woff');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'ABCSans Tabbed';
+	font-weight: 400;
+	font-style: italic;
+	src: url('//res.abc.net.au/fonts/abcsans/abcsans-regularitalic-tabnumbers.woff2') format('woff2'),
+		url('//res.abc.net.au/fonts/abcsans/abcsans-regularitalic-tabnumbers.woff') format('woff');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'ABCSans Tabbed';
+	font-weight: bold;
+	font-style: normal;
+	src: url('//res.abc.net.au/fonts/abcsans/abcsans-bold-tabnumbers.woff2') format('woff2'),
+		url('//res.abc.net.au/fonts/abcsans/abcsans-bold-tabnumbers.woff') format('woff');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'ABCSans Tabbed';
+	font-weight: 900;
+	font-style: normal;
+	src: url('//res.abc.net.au/fonts/abcsans/abcsans-black-tabnumbers.woff2') format('woff2'),
+		url('//res.abc.net.au/fonts/abcsans/abcsans-black-tabnumbers.woff') format('woff');
+	font-display: swap;
+}
