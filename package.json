@@ -19,9 +19,8 @@
 		"@types/d3-scale": "^4.0.2",
 		"d3-array": "^3.1.1",
 		"d3-dsv": "^3.0.1",
-		"d3-interpolate": "^3.0.1",
-		"d3-scale": "^4.0.2",
 		"layercake": "^5.0.3",
+		"micromatch": "^4.0.4",
 		"prettier": "^2.4.1",
 		"prettier-plugin-svelte": "^2.4.0",
 		"svelte": "^3.42.6",
@@ -34,6 +33,8 @@
 	"type": "module",
 	"dependencies": {
 		"@vanilla-extract/css": "^1.6.7",
-		"@vanilla-extract/vite-plugin": "^3.0.1"
+		"@vanilla-extract/vite-plugin": "^3.0.1",
+		"d3-interpolate": "^3.0.1",
+		"d3-scale": "^4.0.2"
 	}
 }
