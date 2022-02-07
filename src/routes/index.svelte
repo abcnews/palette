@@ -1,29 +1,28 @@
+<script context="module" type="ts">
+	import { parseGlobalAverageTemperatureCsv } from '$lib/_documentation/data';
+	export async function load({ fetch }) {
+		try {
+			const txt = await fetch('/global-average-temp.csv').then((r) => r.text());
+			const data = parseGlobalAverageTemperatureCsv(txt);
+			return { props: { data } };
+		} catch (e) {
+			return {
+				status: 500,
+				error: new Error(`Could not load data: ${e.message}`)
+			};
+		}
+	}
+</script>
+
 <script type="ts">
-	import { scaleDiverging, scaleLinear, scaleSequential } from 'd3-scale';
-
-	import { getData } from '$lib/data';
-
 	import ExampleBarChart from '$lib/_examples/ExampleBarChart.svelte';
-
-	import { getDivergentPaletteInterpolator, getContinuousPaletteInterpolator } from '$lib/palettes';
 	import PaletteNominalDefault from '$lib/_documentation/PaletteNominalDefault.svelte';
 	import PaletteNominalExtended from '$lib/_documentation/PaletteNominalExtended.svelte';
 	import PaletteGender from '$lib/_documentation/PaletteGender.svelte';
 	import PaletteSentement from '$lib/_documentation/PaletteSentement.svelte';
 	import PalettePolitical from '$lib/_documentation/PalettePolitical.svelte';
-	import Stripes from '$lib/chart-components/Stripes.svelte';
-	import { onMount } from 'svelte';
-
-	const dataPromise = getData();
-
-	onMount(() => {
-		dataPromise
-			.then((d) => console.log('promise fulfilled'))
-			.catch((d) => console.log('promise rejected :>> ', d));
-	});
-
-	let value: number;
-	$: value = 0.5;
+	import SequentialPaletteExplorer from '$lib/_documentation/SequentialPaletteExplorer.svelte';
+	export let data;
 </script>
 
 <p>The purpose of this document, etc...</p>
@@ -74,25 +73,35 @@
 <p>Use only for categorical data representing political parties.</p>
 <PalettePolitical />
 
-<ExampleBarChart />
+<h2>Sequential palettes</h2>
 
-{#await dataPromise}
-	<p>Loading stripes data ...</p>
-{:then data}
-	<p>Stripes</p>
-	<Stripes {data} scale={scaleSequential([-0.8, 1.5], getContinuousPaletteInterpolator('red'))} />
-{:catch error}
-	<p>Error loading data: {error}</p>
-{/await}
+<p>
+	Sequential palettes are used for choropleth maps or data visualisations where overall pattern is
+	the key takeway (eg. heat maps) and the values have an inherent order (eg. 0% to 100%).
+</p>
+<p>
+	These palettes shift hue, shade, and saturation as they progress from least (Sequential Grey-0) to
+	most (Sequential Black-10). They have been created to be friendly to all forms of colour vision
+	deficiency. Blue is the default and should be used in most circumstances but alternative palettes
+	are provided for when the default blue doesn’t fit the tone of the visualisation / story.
+</p>
+<p>
+	In most cases the continuous scale will be used, but discreet steps are provided for when you want
+	to prioritise quick readability over nuance, or when there’s a important logic to bucketizing the
+	data this way. Note: The colour steps here are provided just for reference. These palettes will
+	eventually be provided in a programmed package for use with bespoke chart creation. This package
+	will provide the specific colours for stepped palettes automatically based on the number of steps
+	required. Each colour in the sequence will have the same contrast ratio with the colour preceding
+	it and the colour following it.
+</p>
+<p>
+	An AA contrast compliant categorical palette with five perceptually distinct colours has also been
+	provided for each colour group. This is for use in charts where the data follows an inherent order
+	but the seperate categorical values are important rather than overall patttern. For example a line
+	chart with four categories— 0-25%, 26-50%, 51-75%, 76-100%.
+</p>
 
-<input type="range" min="0" max="1" step="0.01" bind:value />
-<div>value: {value}</div>
-<div
-	style:borderRadius="50%"
-	style:width="30px"
-	style:height="30px"
-	style:background={getDivergentPaletteInterpolator(['green', 'purple'])(value)}
-/>
+<SequentialPaletteExplorer {data} />
 
 <style>
 </style>

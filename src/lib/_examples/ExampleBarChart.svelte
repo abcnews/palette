@@ -1,8 +1,8 @@
 <script type="ts">
 	import { LayerCake, Html, Svg } from 'layercake';
-	import AxisX from '$lib/chart-components/AxisX.svelte';
-	import BarChart from '$lib/chart-components/BarChart.svelte';
-	import ChartContainer from '$lib/chart-components/ChartContainer.svelte';
+	import AxisX from '$lib/_chart-components/AxisX.svelte';
+	import BarChart from '$lib/_chart-components/BarChart.svelte';
+	import ChartContainer from '$lib/_chart-components/ChartContainer.svelte';
 
 	// Define some data
 	const points = [

@@ -69,9 +69,7 @@ export type SequentialColourName =
 	| 'sequential-aa-purple-3'
 	| 'sequential-aa-purple-4';
 
-export type ColourName =
-	| SequentialColourName
-	| PartyColourName
+type BasicColourName =
 	| 'blue-1'
 	| 'blue-2'
 	| 'blue-3'
@@ -88,6 +86,8 @@ export type ColourName =
 	| 'slate-2'
 	| 'taupe-2'
 	| 'aqua-1';
+
+export type ColourName = SequentialColourName | PartyColourName | BasicColourName;
 
 // The naming of the colours here serves two purposes.
 const namedColours: [ColourName, string][] = [
@@ -138,7 +138,7 @@ const namedColours: [ColourName, string][] = [
 	['sequential-red-7', '#8C1F44'],
 	['sequential-red-8', '#6E0E37'],
 	['sequential-red-9', '#4C0026'],
-	['sequential-green-1', '#E6F2EF'],
+	['sequential-green-1', '#C2D9D3'],
 	['sequential-green-2', '#9BBFB7'],
 	['sequential-green-3', '#79A8A1'],
 	['sequential-green-4', '#59918E'],

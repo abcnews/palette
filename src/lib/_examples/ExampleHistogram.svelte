@@ -2,10 +2,10 @@
 	import { LayerCake, Html, Svg } from 'layercake';
 	import { scaleBand } from 'd3-scale';
 	import { extent as getExtent } from 'd3-array';
-	import AxisX from '$lib/chart-components/AxisX.svelte';
+	import AxisX from '$lib/_chart-components/AxisX.svelte';
 
-	import ChartContainer from '../ChartContainer.svelte';
-	import Histogram from '../Histogram.svelte';
+	import ChartContainer from '$lib/_chart-components/ChartContainer.svelte';
+	import Histogram from '$lib/_chart-components/Histogram.svelte';
 
 	// Define some data
 	const data = [

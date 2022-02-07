@@ -2,9 +2,26 @@ import { getNamedColour } from '$lib/colours';
 import type { ColourName } from '$lib/colours';
 import { piecewise, interpolateRgb } from 'd3-interpolate';
 
-type ColourVariantName = 'blue' | 'red' | 'green' | 'purple';
-type ColourCombinationVariantName = ['red', 'blue'] | ['green', 'purple'] | ['purple', 'red'];
-type CategoricalPaletteName = 'gender' | 'sentiment' | 'political';
+export enum SequentialPalette {
+	Blue = 'blue',
+	Red = 'red',
+	Green = 'green',
+	Purple = 'purple'
+}
+
+export enum DivergentPalette {
+	RedBlue = 'red-blue',
+	GreenPurple = 'green-purple',
+	PurpleRed = 'purple-red'
+}
+
+export const isSequentialPalette = (palette: string): palette is SequentialPalette =>
+	Object.values<string>(SequentialPalette).includes(palette);
+
+export const isDivergentPalette = (palette: string): palette is DivergentPalette =>
+	Object.values<string>(DivergentPalette).includes(palette);
+
+export type CategoricalPaletteName = 'gender' | 'sentiment' | 'political';
 export type ColourWithUsage = { colour: string; usage: string };
 
 export const getNominalCategoricalPalette = (n: number): string[] => {
@@ -39,7 +56,7 @@ export const getEmphasisColours = () => ({
 
 export const getOrdinalCategoricalPalette = (
 	n: number,
-	variant: ColourVariantName = 'blue'
+	variant: SequentialPalette = SequentialPalette.Blue
 ): string[] => {
 	if (n < 2 || n > 5) {
 		throw new Error(
@@ -47,7 +64,7 @@ export const getOrdinalCategoricalPalette = (
 		);
 	}
 
-	const palettes: Record<ColourVariantName, ColourName[][]> = {
+	const palettes: Record<SequentialPalette, ColourName[][]> = {
 		blue: [
 			['sequential-aa-blue-2', 'sequential-aa-blue-4'],
 			['sequential-aa-blue-1', 'sequential-aa-blue-3', 'sequential-black-10'],
@@ -165,7 +182,7 @@ export const getPoliticalPalette = (): Record<string, ColourWithUsage> => {
 };
 
 /* Ordianl palettes */
-const ordinalPalettes: Record<ColourVariantName, ColourName[]> = {
+const ordinalPalettes: Record<SequentialPalette, ColourName[]> = {
 	blue: [
 		'sequential-blue-1',
 		'sequential-blue-2',
@@ -212,7 +229,9 @@ const ordinalPalettes: Record<ColourVariantName, ColourName[]> = {
 	]
 };
 
-export const getContinuousPaletteInterpolator = (variant: ColourVariantName = 'blue') => {
+export const getContinuousPaletteInterpolator = (
+	variant: SequentialPalette = SequentialPalette.Blue
+) => {
 	const palette: string[] = ['sequential-grey-0'];
 	for (let i = 1; i < 10; i++) {
 		palette.push(`sequential-${variant}-${i}`);
@@ -224,16 +243,18 @@ export const getContinuousPaletteInterpolator = (variant: ColourVariantName = 'b
 };
 
 export const getDivergentPaletteInterpolator = (
-	variant: ColourCombinationVariantName = ['red', 'blue']
+	variant: DivergentPalette = DivergentPalette.RedBlue
 ) => {
 	const palette: string[] = [];
+	const colours = variant.split('-');
+
 	let i = 9;
 	for (; i > 0; i--) {
-		palette.push(`sequential-${variant[0]}-${i}`);
+		palette.push(`sequential-${colours[0]}-${i}`);
 	}
 	palette.push('sequential-grey-0');
-	for (; i < 10; i++) {
-		palette.push(`sequential-${variant[1]}-${i}`);
+	for (i++; i < 10; i++) {
+		palette.push(`sequential-${colours[1]}-${i}`);
 	}
 
 	return piecewise(interpolateRgb, palette.map(getNamedColour));
