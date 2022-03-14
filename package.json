@@ -15,7 +15,7 @@
 	"np": {
 		"contents": "package",
 		"branch": "main",
-		"yarn": "false"
+		"yarn": false
 	},
 	"devDependencies": {
 		"@sveltejs/kit": "next",
