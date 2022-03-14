@@ -1,5 +1,5 @@
-import { getNamedColour } from '$lib/colours';
-import type { ColourName } from '$lib/colours';
+import { getNamedColour } from './colours';
+import type { ColourName } from './colours';
 import { piecewise, interpolateRgb } from 'd3-interpolate';
 
 export enum SequentialPalette {
