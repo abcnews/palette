@@ -14,7 +14,7 @@
 		"release": "np"
 	},
 	"np": {
-		"contents": "package",
+		"contents": "./package",
 		"branch": "main",
 		"yarn": false
 	},
