@@ -1,5 +1,5 @@
 {
-	"name": "palette-sk",
+	"name": "@abcnews/palette",
 	"version": "0.0.0",
 	"scripts": {
 		"dev": "svelte-kit dev",
