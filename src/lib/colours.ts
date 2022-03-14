@@ -1,6 +1,6 @@
 /* Named colours */
 
-type PartyColourName =
+export type PartyColourName =
 	| 'ptyred'
 	| 'ptyblue'
 	| 'ptyblack'
@@ -69,7 +69,7 @@ export type SequentialColourName =
 	| 'sequential-aa-purple-3'
 	| 'sequential-aa-purple-4';
 
-type BasicColourName =
+export type BasicColourName =
 	| 'blue-1'
 	| 'blue-2'
 	| 'blue-3'

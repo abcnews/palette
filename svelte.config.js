@@ -1,6 +1,4 @@
 import preprocess from 'svelte-preprocess';
-import mm from 'micromatch';
-import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -15,7 +13,7 @@ const config = {
 			files: (filename) => !filename.startsWith('_')
 		},
 		vite: {
-			plugins: [vanillaExtractPlugin()]
+			plugins: []
 		}
 	}
 };

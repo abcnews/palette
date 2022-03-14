@@ -133,17 +133,6 @@ export const getOrdinalCategoricalPalette = (
 	return palettes[variant][n - 2].map(getNamedColour);
 };
 
-export const getNamedCategoricalPalette = (name: CategoricalPaletteName) => {
-	switch (name) {
-		case 'gender':
-			return getGenderPalette();
-		case 'sentiment':
-			return getSentimentPalette();
-		case 'political':
-			return getPoliticalPalette();
-	}
-};
-
 export const getGenderPalette = (): Record<string, ColourWithUsage> => {
 	return {
 		nonbinary: { colour: getNamedColour('taupe-2'), usage: 'Non-binary' },
@@ -181,54 +170,6 @@ export const getPoliticalPalette = (): Record<string, ColourWithUsage> => {
 	};
 };
 
-/* Ordianl palettes */
-const ordinalPalettes: Record<SequentialPalette, ColourName[]> = {
-	blue: [
-		'sequential-blue-1',
-		'sequential-blue-2',
-		'sequential-blue-3',
-		'sequential-blue-4',
-		'sequential-blue-5',
-		'sequential-blue-6',
-		'sequential-blue-7',
-		'sequential-blue-8',
-		'sequential-blue-9'
-	],
-	red: [
-		'sequential-red-1',
-		'sequential-red-2',
-		'sequential-red-3',
-		'sequential-red-4',
-		'sequential-red-5',
-		'sequential-red-6',
-		'sequential-red-7',
-		'sequential-red-8',
-		'sequential-red-9'
-	],
-	green: [
-		'sequential-green-1',
-		'sequential-green-2',
-		'sequential-green-3',
-		'sequential-green-4',
-		'sequential-green-5',
-		'sequential-green-6',
-		'sequential-green-7',
-		'sequential-green-8',
-		'sequential-green-9'
-	],
-	purple: [
-		'sequential-purple-1',
-		'sequential-purple-2',
-		'sequential-purple-3',
-		'sequential-purple-4',
-		'sequential-purple-5',
-		'sequential-purple-6',
-		'sequential-purple-7',
-		'sequential-purple-8',
-		'sequential-purple-9'
-	]
-};
-
 export const getContinuousPaletteInterpolator = (
 	variant: SequentialPalette = SequentialPalette.Blue
 ) => {
@@ -237,8 +178,7 @@ export const getContinuousPaletteInterpolator = (
 		palette.push(`sequential-${variant}-${i}`);
 	}
 	palette.push('sequential-black-10');
-	// This isn't really an interpolator, but a 'light weight linear scale' (see: https://github.com/d3/d3-interpolate/blob/main/README.md#piecewise)
-
+	// This is effectively a light weight linear scale (see: https://github.com/d3/d3-interpolate/blob/main/README.md#piecewise)
 	return piecewise(interpolateRgb, palette.map(getNamedColour));
 };
 
@@ -256,6 +196,6 @@ export const getDivergentPaletteInterpolator = (
 	for (i++; i < 10; i++) {
 		palette.push(`sequential-${colours[1]}-${i}`);
 	}
-
+	// This is effectively a light weight linear scale (see: https://github.com/d3/d3-interpolate/blob/main/README.md#piecewise)
 	return piecewise(interpolateRgb, palette.map(getNamedColour));
 };

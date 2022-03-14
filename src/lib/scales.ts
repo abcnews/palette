@@ -10,6 +10,10 @@ import { scaleDiverging, scaleSequential } from 'd3-scale';
 const isCouple = (tupple: number[]): tupple is [number, number] => tupple.length === 2;
 const isTriple = (tupple: number[]): tupple is [number, number, number] => tupple.length === 3;
 
+/**
+ * A convenience wrapper around d3's scaleDiverging and scaleSequential for creating
+ * scales with diverging or sequential palettes and a supplied domain.
+ */
 export const createContinuousScale = (
 	palette: SequentialPalette | DivergentPalette,
 	domain: [number, number] | [number, number, number]
