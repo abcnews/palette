@@ -1,22 +1,25 @@
 # ABC News data visualisation colour palettes
 
-Principles:
+This project implements a set of colour palettes for use in data visualisation at ABC News as a javascript package and provides a documentation site and development workflow.
+
+Colour palettes are available for visualising various types of data, including:
+
+- Nominal categorical data
+- Ordinal categorical data
+- Categorical data where semantic meaning is important (gender, sentiment, Australian political parties)
+- Continuous (sequential and divergent) data
+
+## Principles
 
 - This should be the canonical source for colour palettes for data visualisation in ABC News stories.
 - It should be easy to find and use.
 - Palettes should be defined in only one place in the source code.
 - It should be published as both a living style guide and a module which can be required by other projects.
 
-Goal:
 
-- CSS
-  - Custom props for all the colours used in data visualisation palettes
-  - Ready to go classes that define the palettes for each type of visualisation
-- JS with typed exports for each colour scheme
-- JS utility functions for
-  - generating discrete ordinal scales with x number of buckets
-  - creating continuous scale functions for a given sequential/divergent colour scheme
+# CSS
 
+The CSS outputs are not yet complete. Once they are, there will be stylesheets available that encode the colour palettes using pure CSS.
 # Javascript API
 
 This describes the functions and objects available in the module and how to use them for generating or importing colour palettes.
@@ -87,50 +90,17 @@ Returns a continuous scale function for generating colours for an input value. F
 
 `getDivergentPaletteInterpolator: (variant: 'rb'|'gp'|'pr' = 'rb') => (value: number) => string`
 
+# Development
+
+This is a sveltekit project. The `npm run dev` will launch a development server with live reload. This is the easiest way to work on the project. 
+
+This site is also intended to be built and published as documentation for the library and the ABC News colour palettes in general.
+
+## Publication
+
+Packaging is done with the `npm run package` command. This packages the `/src/lib` folder into `/package`. Releases are done with `npm run release`. 
+
 # Authors
 
 - Simon Elvery ([simon@elvery.net](mailto:simon@elvery.net))
-
-# Current status
-
-- Build and dev commands generate the expected CSS at build time.
-- `sveltekit package` doesn't output CSS.
-
-# create-svelte
-
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
-
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm init svelte@next
-
-# create a new project in my-app
-npm init svelte@next my-app
-```
-
-> Note: the `@next` is temporary
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-Before creating a production version of your app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
-
-```bash
-npm run build
-```
-
-> You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
+- Ben Spraggon
