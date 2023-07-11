@@ -1,7 +1,7 @@
-<script type="ts">
+<script lang="ts">
 	import { getContext } from 'svelte';
 
-	const { data, xGet, yGet, yRange, xScale } = getContext('LayerCake');
+	const { data, xGet, yGet, yRange, xScale } = getContext<any>('LayerCake');
 
 	$: columnWidth = (d: number) => {
 		const vals = $xGet(d);

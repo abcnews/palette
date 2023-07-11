@@ -1,9 +1,8 @@
-<script type="ts">
+<script lang="ts">
 	export let title = 'Chart title';
 	export let description = 'Chart description';
 	export let notes = 'Chart notes';
 	export let attribution = 'Chart attribution';
-	export let height = 300;
 </script>
 
 <div class="chart-container">
@@ -29,9 +28,6 @@
 	h1 {
 		font-size: 1.25rem;
 		font-weight: 900;
-	}
-
-	.description {
 	}
 
 	.notes {

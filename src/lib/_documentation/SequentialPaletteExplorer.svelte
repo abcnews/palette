@@ -1,6 +1,6 @@
-<script type="ts">
-	import { SequentialPalette, DivergentPalette, isDivergentPalette } from '$lib/palettes';
-	import { createContinuousScale } from '$lib/scales';
+<script lang="ts">
+	import { SequentialPalette, DivergentPalette, isDivergentPalette } from '$lib/palettes.js';
+	import { createContinuousScale } from '$lib/scales.js';
 	import Stripes from '$lib/_chart-components/Stripes.svelte';
 	import GradientSwatch from '$lib/_documentation/GradientSwatch.svelte';
 

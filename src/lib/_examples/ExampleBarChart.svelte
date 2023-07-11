@@ -1,6 +1,4 @@
-<script type="ts">
-	import { LayerCake, Html, Svg } from 'layercake';
-	import AxisX from '$lib/_chart-components/AxisX.svelte';
+<script lang="ts">
 	import BarChart from '$lib/_chart-components/BarChart.svelte';
 	import ChartContainer from '$lib/_chart-components/ChartContainer.svelte';
 
@@ -17,16 +15,3 @@
 <ChartContainer>
 	<BarChart data={points} />
 </ChartContainer>
-
-<style>
-	/*
-    The wrapper div needs to have an explicit width and height in CSS.
-    It can also be a flexbox child or CSS grid element.
-    The point being it needs dimensions since the <LayerCake> element will
-    expand to fill it.
-  */
-	.chart-container {
-		width: 100%;
-		height: 300px;
-	}
-</style>

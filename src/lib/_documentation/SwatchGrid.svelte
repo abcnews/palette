@@ -1,6 +1,6 @@
-<script type="ts">
-	import { getColourName, getLabelColour } from '$lib/colours';
-	import { getEmphasisColours } from '$lib/palettes';
+<script lang="ts">
+	import { getColourName, getLabelColour } from '$lib/colours.js';
+	import { getEmphasisColours } from '$lib/palettes.js';
 	import Swatch from '$lib/_documentation/Swatch.svelte';
 	import SwatchColourLabel from '$lib/_documentation/SwatchColourLabel.svelte';
 	export let palette: string[];

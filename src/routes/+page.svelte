@@ -1,20 +1,4 @@
-<script context="module" type="ts">
-	import { parseGlobalAverageTemperatureCsv } from '$lib/_documentation/data';
-	export async function load({ fetch }) {
-		try {
-			const txt = await fetch('/global-average-temp.csv').then((r) => r.text());
-			const data = parseGlobalAverageTemperatureCsv(txt);
-			return { props: { data } };
-		} catch (e) {
-			return {
-				status: 500,
-				error: new Error(`Could not load data: ${e.message}`)
-			};
-		}
-	}
-</script>
-
-<script type="ts">
+<script lang="ts">
 	import ExampleBarChart from '$lib/_examples/ExampleBarChart.svelte';
 	import PaletteNominalDefault from '$lib/_documentation/PaletteNominalDefault.svelte';
 	import PaletteNominalExtended from '$lib/_documentation/PaletteNominalExtended.svelte';
@@ -101,7 +85,7 @@
 	chart with four categories— 0-25%, 26-50%, 51-75%, 76-100%.
 </p>
 
-<SequentialPaletteExplorer {data} />
+<SequentialPaletteExplorer data={data.globalAverageTemperature} />
 
 <style>
 </style>

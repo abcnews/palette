@@ -3,8 +3,8 @@ import {
 	getContinuousPaletteInterpolator,
 	isDivergentPalette,
 	isSequentialPalette
-} from './palettes';
-import type { SequentialPalette, DivergentPalette } from './palettes';
+} from './palettes.js';
+import type { SequentialPalette, DivergentPalette } from './palettes.js';
 import { scaleDiverging, scaleSequential } from 'd3-scale';
 
 const isCouple = (tupple: number[]): tupple is [number, number] => tupple.length === 2;
