@@ -1,5 +1,5 @@
-<script type="ts">
-	import { getNominalCategoricalPalette } from '$lib/palettes';
+<script lang="ts">
+	import { getNominalCategoricalPalette } from '$lib/palettes.js';
 	import SwatchGrid from '$lib/_documentation/SwatchGrid.svelte';
 </script>
 

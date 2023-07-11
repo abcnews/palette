@@ -1,5 +1,5 @@
-<script type="ts">
-	import { getColourName, getLabelColour } from '$lib/colours';
+<script lang="ts">
+	import { getColourName, getLabelColour } from '$lib/colours.js';
 	import Swatch from './Swatch.svelte';
 	import SwatchColourLabel from './SwatchColourLabel.svelte';
 	export let palette: { colour: string; usage: string }[];

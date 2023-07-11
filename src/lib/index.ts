@@ -1,3 +1,3 @@
-export * from './colours';
-export * from './palettes';
-export * from './scales';
+export * from './colours.js';
+export * from './palettes.js';
+export * from './scales.js';

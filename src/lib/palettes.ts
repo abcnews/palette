@@ -1,5 +1,5 @@
-import { getNamedColour } from './colours';
-import type { ColourName } from './colours';
+import { getNamedColour } from './colours.js';
+import type { ColourName } from './colours.js';
 import { piecewise, interpolateRgb } from 'd3-interpolate';
 
 export enum SequentialPalette {

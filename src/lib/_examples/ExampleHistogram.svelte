@@ -1,5 +1,5 @@
-<script type="ts">
-	import { LayerCake, Html, Svg } from 'layercake';
+<script lang="ts">
+	import { LayerCake, Svg } from 'layercake';
 	import { scaleBand } from 'd3-scale';
 	import { extent as getExtent } from 'd3-array';
 	import AxisX from '$lib/_chart-components/AxisX.svelte';
@@ -25,7 +25,7 @@
 			{data}
 			x="sales"
 			y="price"
-			xScale={scaleBand().paddingInner([0.02]).round(true)}
+			xScale={scaleBand().paddingInner(0.02).round(true)}
 			xDomain={extent}
 		>
 			<Svg>

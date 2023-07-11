@@ -1,7 +1,7 @@
-<script type="ts">
+<script lang="ts">
 	import { scaleLinear } from 'd3-scale';
 	import { extent as getExtent } from 'd3-array';
-	import { getNominalCategoricalPalette } from '$lib/palettes';
+	import { getNominalCategoricalPalette } from '$lib/palettes.js';
 
 	type Data = {
 		label: string;
@@ -63,9 +63,5 @@
 		display: block;
 		position: relative;
 		margin-top: 5px;
-	}
-	.label {
-		position: relative;
-		left: calc(100% + 10px);
 	}
 </style>

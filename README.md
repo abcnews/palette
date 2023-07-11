@@ -16,10 +16,10 @@ Colour palettes are available for visualising various types of data, including:
 - Palettes should be defined in only one place in the source code.
 - It should be published as both a living style guide and a module which can be required by other projects.
 
-
 # CSS
 
 The CSS outputs are not yet complete. Once they are, there will be stylesheets available that encode the colour palettes using pure CSS.
+
 # Javascript API
 
 This describes the functions and objects available in the module and how to use them for generating or importing colour palettes.
@@ -92,13 +92,13 @@ Returns a continuous scale function for generating colours for an input value. F
 
 # Development
 
-This is a sveltekit project. The `npm run dev` will launch a development server with live reload. This is the easiest way to work on the project. 
+This is a sveltekit project. The `npm run dev` will launch a development server with live reload. This is the easiest way to work on the project.
 
 This site is also intended to be built and published as documentation for the library and the ABC News colour palettes in general.
 
 ## Publication
 
-Packaging is done with the `npm run package` command. This packages the `/src/lib` folder into `/package`. Releases are done with `npm run release`. 
+Packaging is done with the `npm run package` command. This packages the `/src/lib` folder into `/package`. Releases are done with `npm run release`.
 
 # Authors
 
