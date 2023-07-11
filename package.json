@@ -14,6 +14,9 @@
 		"release": "np",
 		"version": "npm run package"
 	},
+	"engines": {
+		"node": ">=18"
+	},
 	"np": {
 		"contents": "./dist",
 		"branch": "main",
