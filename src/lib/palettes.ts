@@ -14,6 +14,13 @@ export enum SequentialPalette {
 	Purple = 'purple'
 }
 
+export enum OrdinalPalette {
+	Blue = 'blue',
+	Red = 'red',
+	Green = 'green',
+	Purple = 'purple'
+}
+
 export enum DivergentPalette {
 	RedBlue = 'red-blue',
 	GreenPurple = 'green-purple',
@@ -58,85 +65,6 @@ export const getEmphasisColours = () => ({
 	emphasise: getNamedColour('orange-1'),
 	deemphasise: getNamedColour('grey-1')
 });
-
-export const getOrdinalCategoricalPalette = (
-	n: number,
-	variant: SequentialPalette = SequentialPalette.Blue
-): string[] => {
-	if (n < 2 || n > 5) {
-		throw new Error(
-			`Cannot generate ordinal categorical palette of size ${n}. The palette size should be 2-5.`
-		);
-	}
-
-	const palettes: Record<SequentialPalette, ColourName[][]> = {
-		blue: [
-			['sequential-aa-blue-2', 'sequential-aa-blue-4'],
-			['sequential-aa-blue-1', 'sequential-aa-blue-3', 'sequential-black-10'],
-			[
-				'sequential-aa-blue-1',
-				'sequential-aa-blue-2',
-				'sequential-aa-blue-4',
-				'sequential-black-10'
-			],
-			[
-				'sequential-aa-blue-1',
-				'sequential-aa-blue-2',
-				'sequential-aa-blue-3',
-				'sequential-aa-blue-4',
-				'sequential-black-10'
-			]
-		],
-		red: [
-			['sequential-aa-red-2', 'sequential-aa-red-4'],
-			['sequential-aa-red-1', 'sequential-aa-red-3', 'sequential-black-10'],
-			['sequential-aa-red-1', 'sequential-aa-red-2', 'sequential-aa-red-4', 'sequential-black-10'],
-			[
-				'sequential-aa-red-1',
-				'sequential-aa-red-2',
-				'sequential-aa-red-3',
-				'sequential-aa-red-4',
-				'sequential-black-10'
-			]
-		],
-		green: [
-			['sequential-aa-green-2', 'sequential-aa-green-4'],
-			['sequential-aa-green-1', 'sequential-aa-green-3', 'sequential-black-10'],
-			[
-				'sequential-aa-green-1',
-				'sequential-aa-green-2',
-				'sequential-aa-green-4',
-				'sequential-black-10'
-			],
-			[
-				'sequential-aa-green-1',
-				'sequential-aa-green-2',
-				'sequential-aa-green-3',
-				'sequential-aa-green-4',
-				'sequential-black-10'
-			]
-		],
-		purple: [
-			['sequential-aa-purple-2', 'sequential-aa-purple-4'],
-			['sequential-aa-purple-1', 'sequential-aa-purple-3', 'sequential-black-10'],
-			[
-				'sequential-aa-purple-1',
-				'sequential-aa-purple-2',
-				'sequential-aa-purple-4',
-				'sequential-black-10'
-			],
-			[
-				'sequential-aa-purple-1',
-				'sequential-aa-purple-2',
-				'sequential-aa-purple-3',
-				'sequential-aa-purple-4',
-				'sequential-black-10'
-			]
-		]
-	};
-
-	return palettes[variant][n - 2].map(getNamedColour);
-};
 
 export const getGenderPalette = (): Record<string, ColourWithUsage> => {
 	return {
@@ -184,6 +112,18 @@ const getSequentialPalette = (
 		palette.push(`s-${variant}-${i}-${mode}`);
 	}
 	palette.push(`s-10-${mode}`);
+	return palette;
+};
+
+const getOrdinalPalette = (
+	variant: OrdinalPalette = OrdinalPalette.Blue,
+	mode: ColourMode = ColourMode.Light
+) => {
+	const palette: string[] = [];
+	for (let i = 1; i < 5; i++) {
+		palette.push(`o-${variant}-${i}-${mode}`);
+	}
+	palette.push(`o-5-${mode}`);
 	return palette;
 };
 
@@ -236,6 +176,36 @@ export const getSequentialSteppedPalette = (
 		const pct = i / steps;
 		return interpolator(pct);
 	});
+	return palette;
+};
+
+export const getOrdinalCategoricalPalette = (
+	steps: number,
+	variant: OrdinalPalette = OrdinalPalette.Blue,
+	mode: ColourMode = ColourMode.Light
+): string[] => {
+	const MAX_STEPS = 5;
+	const MIN_STEPS = 2;
+	if (steps < MIN_STEPS || steps > MAX_STEPS) {
+		throw new Error(
+			`Cannot generate ordinal categorical palette of size ${steps}. The palette size should be 2-5.`
+		);
+	}
+
+	const gradient = getOrdinalPalette(variant, mode)
+		.slice(0, Math.min(MAX_STEPS, steps + 1))
+		.map(getNamedColour);
+
+	console.log('gradient :>> ', gradient);
+
+	const interpolator = piecewise(interpolateRgb, gradient);
+
+	const palette = new Array<string>(steps).fill(undefined).map((_, i) => {
+		const pct = i / (steps - 1);
+		console.log('pct :>> ', pct);
+		return interpolator(pct);
+	});
+	console.log('palette :>> ', palette);
 	return palette;
 };
 

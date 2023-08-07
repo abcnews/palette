@@ -183,6 +183,42 @@ export type DivergentColourName =
 	| 'd-green-9-d'
 	| 'd-green-10-d';
 
+export type OrdinalColourName =
+	| 'o-blue-1-l'
+	| 'o-blue-2-l'
+	| 'o-blue-3-l'
+	| 'o-blue-4-l'
+	| 'o-red-1-l'
+	| 'o-red-2-l'
+	| 'o-red-3-l'
+	| 'o-red-4-l'
+	| 'o-green-1-l'
+	| 'o-green-2-l'
+	| 'o-green-3-l'
+	| 'o-green-4-l'
+	| 'o-purple-1-l'
+	| 'o-purple-2-l'
+	| 'o-purple-3-l'
+	| 'o-purple-4-l'
+	| 'o-5-l'
+	| 'o-blue-1-d'
+	| 'o-blue-2-d'
+	| 'o-blue-3-d'
+	| 'o-blue-4-d'
+	| 'o-red-1-d'
+	| 'o-red-2-d'
+	| 'o-red-3-d'
+	| 'o-red-4-d'
+	| 'o-green-1-d'
+	| 'o-green-2-d'
+	| 'o-green-3-d'
+	| 'o-green-4-d'
+	| 'o-purple-1-d'
+	| 'o-purple-2-d'
+	| 'o-purple-3-d'
+	| 'o-purple-4-d'
+	| 'o-5-d';
+
 export type BasicColourName =
 	| 'blue-1'
 	| 'blue-2'
@@ -204,6 +240,7 @@ export type BasicColourName =
 export type ColourName =
 	| SequentialColourName
 	| DivergentColourName
+	| OrdinalColourName
 	| PartyColourName
 	| BasicColourName;
 
@@ -401,7 +438,41 @@ const namedColours: [ColourName, string][] = [
 	['d-green-7-d', '#56ad9a'],
 	['d-green-8-d', '#72c4a7'],
 	['d-green-9-d', '#92dbb5'],
-	['d-green-10-d', '#b8f1c5']
+	['d-green-10-d', '#b8f1c5'],
+	['o-blue-1-l', '#6D9BB0'],
+	['o-blue-2-l', '#456EAC'],
+	['o-blue-3-l', '#2D3F9E'],
+	['o-blue-4-l', '#090A86'],
+	['o-red-1-l', '#CD7E86'],
+	['o-red-2-l', '#B8436A'],
+	['o-red-3-l', '#871858'],
+	['o-red-4-l', '#500038'],
+	['o-green-1-l', '#779C92'],
+	['o-green-2-l', '#3D7580'],
+	['o-green-3-l', '#1F4C6D'],
+	['o-green-4-l', '#002459'],
+	['o-purple-1-l', '#AB88B9'],
+	['o-purple-2-l', '#835BAC'],
+	['o-purple-3-l', '#5230A4'],
+	['o-purple-4-l', '#110785'],
+	['o-5-l', '#000000'],
+	['o-blue-1-d', '#4D558F'],
+	['o-blue-2-d', '#5782B9'],
+	['o-blue-3-d', '#5DB2DC'],
+	['o-blue-4-d', '#5DE9FF'],
+	['o-red-1-d', '#81466B'],
+	['o-red-2-d', '#BC6584'],
+	['o-red-3-d', '#E98F9A'],
+	['o-red-4-d', '#FFC6B8'],
+	['o-green-1-d', '#455982'],
+	['o-green-2-d', '#448C9B'],
+	['o-green-3-d', '#3AC0B3'],
+	['o-green-4-d', '#75F0CD'],
+	['o-purple-1-d', '#525489'],
+	['o-purple-2-d', '#8C72BC'],
+	['o-purple-3-d', '#C695E2'],
+	['o-purple-4-d', '#FFBDFF'],
+	['o-5-d', '#ffffff']
 ];
 
 const labelColours: [ColourName, string][] = [

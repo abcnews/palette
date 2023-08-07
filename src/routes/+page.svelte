@@ -6,6 +6,7 @@
 	import PaletteSentement from '$lib/_documentation/PaletteSentement.svelte';
 	import PalettePolitical from '$lib/_documentation/PalettePolitical.svelte';
 	import SequentialPaletteExplorer from '$lib/_documentation/SequentialPaletteExplorer.svelte';
+	import OrdinalCategoricalPaletteExplorer from '$lib/_documentation/OrdinalCategoricalPaletteExplorer.svelte';
 	export let data;
 </script>
 
@@ -86,6 +87,10 @@
 </p>
 
 <SequentialPaletteExplorer data={data.globalAverageTemperature} />
+
+<h2>Ordinal categorical palettes</h2>
+
+<OrdinalCategoricalPaletteExplorer />
 
 <style>
 </style>
