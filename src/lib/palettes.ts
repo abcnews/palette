@@ -2,6 +2,11 @@ import { getNamedColour } from './colours.js';
 import type { ColourName } from './colours.js';
 import { piecewise, interpolateRgb } from 'd3-interpolate';
 
+export enum ColourMode {
+	Light = 'l',
+	Dark = 'd'
+}
+
 export enum SequentialPalette {
 	Blue = 'blue',
 	Red = 'red',
@@ -170,32 +175,103 @@ export const getPoliticalPalette = (): Record<string, ColourWithUsage> => {
 	};
 };
 
-export const getContinuousPaletteInterpolator = (
-	variant: SequentialPalette = SequentialPalette.Blue
+const getSequentialPalette = (
+	variant: SequentialPalette = SequentialPalette.Blue,
+	mode: ColourMode = ColourMode.Light
 ) => {
-	const palette: string[] = ['sequential-grey-0'];
+	const palette: string[] = [`sd-0-${mode}`];
 	for (let i = 1; i < 10; i++) {
-		palette.push(`sequential-${variant}-${i}`);
+		palette.push(`s-${variant}-${i}-${mode}`);
 	}
-	palette.push('sequential-black-10');
-	// This is effectively a light weight linear scale (see: https://github.com/d3/d3-interpolate/blob/main/README.md#piecewise)
-	return piecewise(interpolateRgb, palette.map(getNamedColour));
+	palette.push(`s-10-${mode}`);
+	return palette;
 };
 
-export const getDivergentPaletteInterpolator = (
-	variant: DivergentPalette = DivergentPalette.RedBlue
+const getDivergentPalette = (
+	variant: DivergentPalette = DivergentPalette.RedBlue,
+	mode: ColourMode = ColourMode.Light
 ) => {
+	const [left, right] = variant.split('-');
 	const palette: string[] = [];
-	const colours = variant.split('-');
-
-	let i = 9;
+	let i = 10;
 	for (; i > 0; i--) {
-		palette.push(`sequential-${colours[0]}-${i}`);
+		palette.push(
+			`d-${left}-${i}-${mode}${left === 'purple' && mode === ColourMode.Dark ? '-2' : ''}`
+		);
 	}
-	palette.push('sequential-grey-0');
-	for (i++; i < 10; i++) {
-		palette.push(`sequential-${colours[1]}-${i}`);
+	palette.push(`sd-0-${mode}`);
+	for (i++; i < 11; i++) {
+		palette.push(
+			`d-${right}-${i}-${mode}${right === 'purple' && mode === ColourMode.Dark ? '-1' : ''}`
+		);
 	}
+	return palette;
+};
+
+export const getSequentialContinuousPaletteInterpolator = (
+	variant: SequentialPalette = SequentialPalette.Blue,
+	mode: ColourMode = ColourMode.Light
+) => {
 	// This is effectively a light weight linear scale (see: https://github.com/d3/d3-interpolate/blob/main/README.md#piecewise)
-	return piecewise(interpolateRgb, palette.map(getNamedColour));
+	return piecewise(interpolateRgb, getSequentialPalette(variant, mode).map(getNamedColour));
+};
+
+export const getSequentialSteppedPalette = (
+	steps: number,
+	variant: SequentialPalette = SequentialPalette.Blue,
+	mode: ColourMode = ColourMode.Light
+) => {
+	const MIN_STEPS = 2;
+	const MAX_STEPS = 10;
+	if (steps > MAX_STEPS || steps < MIN_STEPS) {
+		throw new Error('Stepped palettes can have between two and ten steps.');
+	}
+
+	const gradient = getSequentialPalette(variant, mode)
+		.slice(0, Math.min(steps + 6, MAX_STEPS + 1))
+		.map(getNamedColour);
+
+	const interpolator = piecewise(interpolateRgb, gradient);
+	const palette = new Array<string>(steps + 1).fill(undefined).map((_, i) => {
+		const pct = i / steps;
+		return interpolator(pct);
+	});
+	return palette;
+};
+
+export const getDivergentContinuousPaletteInterpolator = (
+	variant: DivergentPalette = DivergentPalette.RedBlue,
+	mode: ColourMode = ColourMode.Light
+) => {
+	// This is effectively a light weight linear scale (see: https://github.com/d3/d3-interpolate/blob/main/README.md#piecewise)
+	return piecewise(interpolateRgb, getDivergentPalette(variant, mode).map(getNamedColour));
+};
+
+export const getDivergentSteppedPalette = (
+	steps: number,
+	variant: DivergentPalette = DivergentPalette.RedBlue,
+	mode: ColourMode = ColourMode.Light
+) => {
+	const MIN_STEPS = 1;
+	const MAX_STEPS = 10;
+	if (steps > MAX_STEPS || steps < MIN_STEPS) {
+		throw new Error(
+			'Divergent stepped palettes can have between one and nine steps (in each direction).'
+		);
+	}
+
+	const OFFSET = 7;
+
+	const gradient = getDivergentPalette(variant, mode).slice(
+		Math.max(0, MAX_STEPS - steps - OFFSET),
+		Math.min(MAX_STEPS + steps + OFFSET + 1, MAX_STEPS * 2 + 1)
+	);
+	const gradientColours = gradient.map(getNamedColour);
+	const interpolator = piecewise(interpolateRgb, gradientColours);
+	const palette = new Array<string>(steps * 2 + 1).fill(undefined).map((_, i) => {
+		const pct = i / (steps * 2);
+		return interpolator(pct);
+	});
+
+	return palette;
 };
