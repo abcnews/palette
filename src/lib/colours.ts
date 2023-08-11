@@ -493,6 +493,6 @@ export const getLabelColour = (colour: ColourName): string =>
 	labelColoursMap.get(colour) || namedColoursMap.get(colour);
 
 export const getColourName = (hex: string): ColourName =>
-	Array.from(namedColoursMap.entries()).find(([, colour]) => colour === hex)[0];
+	namedColours.find(([_, colour]) => colour === hex)[0];
 
 export const getNamedColour = (name: ColourName): string => namedColoursMap.get(name);
