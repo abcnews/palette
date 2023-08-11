@@ -196,16 +196,12 @@ export const getOrdinalCategoricalPalette = (
 		.slice(0, Math.min(MAX_STEPS, steps + 1))
 		.map(getNamedColour);
 
-	console.log('gradient :>> ', gradient);
-
 	const interpolator = piecewise(interpolateRgb, gradient);
 
 	const palette = new Array<string>(steps).fill(undefined).map((_, i) => {
 		const pct = i / (steps - 1);
-		console.log('pct :>> ', pct);
 		return interpolator(pct);
 	});
-	console.log('palette :>> ', palette);
 	return palette;
 };
 
