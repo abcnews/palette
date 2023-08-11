@@ -1,6 +1,6 @@
 import {
-	getDivergentPaletteInterpolator,
-	getContinuousPaletteInterpolator,
+	getDivergentContinuousPaletteInterpolator,
+	getSequentialContinuousPaletteInterpolator,
 	isDivergentPalette,
 	isSequentialPalette
 } from './palettes.js';
@@ -20,14 +20,14 @@ export const createContinuousScale = (
 ) => {
 	if (isDivergentPalette(palette)) {
 		if (isTriple(domain)) {
-			return scaleDiverging<string>(domain, getDivergentPaletteInterpolator(palette));
+			return scaleDiverging<string>(domain, getDivergentContinuousPaletteInterpolator(palette));
 		} else {
 			throw new Error('Divergent palettes require a domain of length 3.');
 		}
 	}
 	if (isSequentialPalette(palette)) {
 		if (isCouple(domain)) {
-			return scaleSequential<string>(domain, getContinuousPaletteInterpolator(palette));
+			return scaleSequential<string>(domain, getSequentialContinuousPaletteInterpolator(palette));
 		} else {
 			throw new Error('Sequential palettes require a domain of length 2.');
 		}

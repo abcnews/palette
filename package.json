@@ -2,7 +2,7 @@
 	"name": "@abcnews/palette",
 	"version": "1.0.0-2",
 	"scripts": {
-		"dev": "vite dev",
+		"dev": "vite dev & svelte-package --watch",
 		"build": "vite build",
 		"preview": "vite preview",
 		"package": "svelte-package",
@@ -25,10 +25,12 @@
 		"@sveltejs/kit": "^1.22.1",
 		"@sveltejs/package": "^2.1.0",
 		"@types/d3-array": "^3.0.2",
+		"@types/d3-color": "^3.1.0",
 		"@types/d3-dsv": "^3.0.0",
 		"@types/d3-interpolate": "^3.0.1",
 		"@types/d3-scale": "^4.0.2",
 		"d3-array": "^3.1.1",
+		"d3-color": "^3.1.0",
 		"d3-dsv": "^3.0.1",
 		"layercake": "^7.6.0",
 		"micromatch": "^4.0.4",
@@ -51,44 +53,17 @@
 		"d3-interpolate": "^3.0.1",
 		"d3-scale": "^4.0.2"
 	},
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"./dist"
+	],
 	"exports": {
 		"./package.json": "./package.json",
-		"./colours": {
-			"types": "./dist/colours.d.ts",
-			"default": "./dist/colours.js"
-		},
 		".": {
 			"types": "./dist/index.d.ts",
 			"svelte": "./dist/index.js",
 			"default": "./dist/index.js"
-		},
-		"./palettes": {
-			"types": "./dist/palettes.d.ts",
-			"default": "./dist/palettes.js"
-		},
-		"./scales": {
-			"types": "./dist/scales.d.ts",
-			"default": "./dist/scales.js"
-		}
-	},
-	"files": [
-		"dist"
-	],
-	"svelte": "./dist/index.js",
-	"typesVersions": {
-		">4.0": {
-			"colours": [
-				"./dist/colours.d.ts"
-			],
-			"index.d.ts": [
-				"./dist/index.d.ts"
-			],
-			"palettes": [
-				"./dist/palettes.d.ts"
-			],
-			"scales": [
-				"./dist/scales.d.ts"
-			]
 		}
 	}
 }

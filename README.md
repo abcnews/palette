@@ -7,7 +7,7 @@ Colour palettes are available for visualising various types of data, including:
 - Nominal categorical data
 - Ordinal categorical data
 - Categorical data where semantic meaning is important (gender, sentiment, Australian political parties)
-- Continuous (sequential and divergent) data
+- Continuous and stepped (sequential and divergent) data
 
 ## Principles
 
@@ -15,10 +15,6 @@ Colour palettes are available for visualising various types of data, including:
 - It should be easy to find and use.
 - Palettes should be defined in only one place in the source code.
 - It should be published as both a living style guide and a module which can be required by other projects.
-
-# CSS
-
-The CSS outputs are not yet complete. Once they are, there will be stylesheets available that encode the colour palettes using pure CSS.
 
 # Javascript API
 
@@ -66,29 +62,49 @@ Returns a palette for use when visualising political parties.
 
 `getPoliticalPalette: () => PoliticalPalette`
 
-## Continuous and divergent palettes
+## Sequential and divergent palettes
 
-Continuous and divergent palettes are provided as an interpolation function that takes a value between 0 and 1 and returns a hex RGB colour string. These are similar to the diverging and sequential schemes provided by d3 in the [d3-scale-chromatic](https://github.com/d3/d3-scale-chromatic/blob/main/README.md) package.
+Sequential and divergent palettes are provided in two forms: continuous and stepped.
+
+Continuous palettes are implemented as an interpolation function that takes a value between 0 and 1 and returns a hex RGB colour string. These are similar to the diverging and sequential schemes provided by d3 in the [d3-scale-chromatic](https://github.com/d3/d3-scale-chromatic/blob/main/README.md) package.
 
 These are suited for use with a scale function where an input domain appropriate for the data you're visualising is mapped to a normalised output range between 0 and 1.
 
 An easy way to use these is with d3's [sequential](https://github.com/d3/d3-scale/blob/main/README.md#sequential-scales) and [diverging](https://github.com/d3/d3-scale/blob/main/README.md#diverging-scales) scale functions. Unlike most of d3's scale functions these take an interpolation function in place of a range.
 
 ```js
-const scale = d3.scaleSequential(getContinuousPalette('blue')).domain([0, 100]);
+const scale = d3
+	.scaleSequential(getSequentialContinuousPaletteInterpolator('blue'))
+	.domain([0, 100]);
 ```
 
-### Continuous
+### Sequential
+
+#### Continuous
 
 Returns a continuous scale function for generating colours for an input value. Functions expect a value between 0 and 1.
 
-`getContinuousPaletteInterpolator: (variant: 'blue'|'red'|'green'|'purple' = 'blue') => (value: number) => string`
+`getSequentialContinuousPaletteInterpolator: (variant: 'blue'|'red'|'green'|'purple' = 'blue') => (value: number) => string`
+
+#### Stepped
+
+Returns an array of `steps + 1` colours.
+
+`getSequentialSteppedPalette: (steps: number, variant: 'blue'|'red'|'green'|'purple' = 'blue') => string[]`
 
 ### Divergent
 
+#### Continuous
+
 Returns a continuous scale function for generating colours for an input value. Functions expect a value between 0 and 1.
 
-`getDivergentPaletteInterpolator: (variant: 'rb'|'gp'|'pr' = 'rb') => (value: number) => string`
+`getDivergentContinuousPaletteInterpolator: (variant: 'rb'|'gp'|'pr' = 'rb') => (value: number) => string`
+
+#### Stepped
+
+Returns an array of `steps * 2 + 1` colours.
+
+`getDivergentSteppedPalette: (steps: number, variant: 'rb'|'gp'|'pr' = 'rb') => string[]`
 
 # Development
 
@@ -98,7 +114,7 @@ This site is also intended to be built and published as documentation for the li
 
 ## Publication
 
-Packaging is done with the `npm run package` command. This packages the `/src/lib` folder into `/package`. Releases are done with `npm run release`.
+Packaging is done with the `npm run package` command. This packages the `/src/lib` folder into `/dist`. Releases are done with `npm run release`.
 
 # Authors
 
