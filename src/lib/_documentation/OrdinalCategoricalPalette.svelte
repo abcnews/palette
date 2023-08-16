@@ -1,13 +1,14 @@
 <script lang="ts">
-	import { OrdinalPalette, getOrdinalCategoricalPalette } from '$lib/palettes.js';
+	import { ColourMode, OrdinalPalette, getOrdinalCategoricalPalette } from '$lib/palettes.js';
 	import { colourLuminance } from '$lib/utils.js';
 	import { color } from 'd3-color';
 
 	export let palette: OrdinalPalette;
+	export let mode: ColourMode;
 
 	$: lengths = new Array<string[]>(4)
 		.fill(undefined)
-		.map((_, i) => getOrdinalCategoricalPalette(5 - i, palette));
+		.map((_, i) => getOrdinalCategoricalPalette(5 - i, palette, mode));
 </script>
 
 <div>

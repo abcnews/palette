@@ -2,10 +2,11 @@
 	import { createContinuousScale } from '$lib/scales.js';
 	import Stripes from '$lib/_chart-components/Stripes.svelte';
 	import GradientSwatch from '$lib/_documentation/GradientSwatch.svelte';
-	import type { SequentialPalette } from '$lib/palettes.js';
+	import type { ColourMode, SequentialPalette } from '$lib/palettes.js';
 
 	export let data;
 	export let palette: SequentialPalette;
+	export let mode: ColourMode;
 
 	const DEFAULT_EXTENT = 1.5;
 	let domain: [number, number] = [-DEFAULT_EXTENT, DEFAULT_EXTENT];
@@ -14,7 +15,7 @@
 	$: domain = [-extent, extent];
 </script>
 
-<div><GradientSwatch {palette} orientation="h" /></div>
+<div><GradientSwatch {palette} {mode} orientation="h" /></div>
 
 <p>Example use as a continuous palette:</p>
 <div class="field">
@@ -23,7 +24,7 @@
 	<span>{domain}</span>
 </div>
 
-<Stripes {data} scale={createContinuousScale(palette, domain)} />
+<Stripes {data} scale={createContinuousScale(palette, mode, domain)} />
 
 <style>
 	.field {

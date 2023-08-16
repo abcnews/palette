@@ -1,11 +1,12 @@
 <script lang="ts">
-	import { SequentialPalette, getSequentialSteppedPalette } from '$lib/palettes.js';
+	import { ColourMode, SequentialPalette, getSequentialSteppedPalette } from '$lib/palettes.js';
 	import { colourLuminance } from '$lib/utils.js';
 	import { color } from 'd3-color';
 	export let palette: SequentialPalette;
+	export let mode: ColourMode;
 	$: lengths = new Array<string[]>(9)
 		.fill(undefined)
-		.map((_, i) => getSequentialSteppedPalette(10 - i, palette));
+		.map((_, i) => getSequentialSteppedPalette(10 - i, palette, mode));
 </script>
 
 <div>

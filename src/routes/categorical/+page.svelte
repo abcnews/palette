@@ -4,11 +4,17 @@
 	import PaletteGender from '$lib/_documentation/PaletteGender.svelte';
 	import PaletteSentement from '$lib/_documentation/PaletteSentement.svelte';
 	import PalettePolitical from '$lib/_documentation/PalettePolitical.svelte';
-	import OrdinalCategoricalPaletteExplorer from '$lib/_documentation/OrdinalCategoricalPaletteExplorer.svelte';
-	import { OrdinalPalette } from '$lib/palettes.js';
+	import OrdinalCategoricalPalette from '$lib/_documentation/OrdinalCategoricalPalette.svelte';
+	import { ColourMode, OrdinalPalette } from '$lib/palettes.js';
 	import OrdinalPaletteSelector from '$lib/_documentation/OrdinalPaletteSelector.svelte';
+	import ColourModeSelector from '$lib/_documentation/ColourModeSelector.svelte';
 	let ordinalPalette: OrdinalPalette = OrdinalPalette.Blue;
+	let mode: ColourMode = ColourMode.Light;
 </script>
+
+<svelte:head>
+	<meta name="color-scheme" content={mode === 'l' ? 'light' : 'dark'} />
+</svelte:head>
 
 <h2 id="categorical">Categorical</h2>
 <p>
@@ -71,4 +77,5 @@
 </p>
 
 <OrdinalPaletteSelector bind:selectedPalette={ordinalPalette} />
-<OrdinalCategoricalPaletteExplorer palette={ordinalPalette} />
+<ColourModeSelector bind:selectedMode={mode} />
+<OrdinalCategoricalPalette palette={ordinalPalette} {mode} />

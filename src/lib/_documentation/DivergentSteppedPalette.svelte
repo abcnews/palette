@@ -1,12 +1,13 @@
 <script lang="ts">
-	import { DivergentPalette, getDivergentSteppedPalette } from '$lib/palettes.js';
+	import { ColourMode, DivergentPalette, getDivergentSteppedPalette } from '$lib/palettes.js';
 	import { colourLuminance } from '$lib/utils.js';
 	import { color } from 'd3-color';
 	export let palette: DivergentPalette;
+	export let mode: ColourMode;
 
 	$: lengths = new Array<string[]>(10)
 		.fill(undefined)
-		.map((_, i) => getDivergentSteppedPalette(10 - i, palette));
+		.map((_, i) => getDivergentSteppedPalette(10 - i, palette, mode));
 
 	let height = 50;
 	let width = 90;

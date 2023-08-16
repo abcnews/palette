@@ -7,8 +7,8 @@
 	<label for="palette">Select palette</label>
 	<select id="palette" bind:value={selectedPalette}>
 		<option value={DivergentPalette.RedBlue}>Red - Blue</option>
-		<option value={DivergentPalette.GreenPurple}>Green - Purple</option>
-		<option value={DivergentPalette.PurpleRed}>Purple - Red</option>
+		<option value={DivergentPalette.PurpleGreen}>Purple — Green</option>
+		<option value={DivergentPalette.RedViolet}>Red — Violet</option>
 	</select>
 </div>
 
