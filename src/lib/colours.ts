@@ -1,5 +1,20 @@
 /* Named colours */
 
+/*
+
+Colours are named for a few reasons:
+- it serves as a canonical list of all colours used in the palettes and 
+  indicates how that colour is used, providing better clarity
+- for some palettes, it's useful to be able to retrieve additional data about a 
+  colour (e.g. the parties associated with a given political party colour)
+- Some colours have an associated 'label' colour that should be used for 
+  associated text
+- It makes type safety around colours possible.
+
+Sequential, divergent and ordinal colour names follow a specific format:
+<palette type(s)>[-<base colour>]-<index>-<light/dark variant>
+*/
+
 export type PartyColourName =
 	| 'ptyred'
 	| 'ptyblue'
@@ -92,6 +107,7 @@ export type SequentialColourName =
 	| 's-purple-9-d';
 
 export type DivergentColourName =
+	| 'sd-0-l'
 	| 'd-red-1-l'
 	| 'd-red-2-l'
 	| 'd-red-3-l'
@@ -132,6 +148,7 @@ export type DivergentColourName =
 	| 'd-green-8-l'
 	| 'd-green-9-l'
 	| 'd-green-10-l'
+	| 'sd-0-d'
 	| 'd-red-1-d'
 	| 'd-red-2-d'
 	| 'd-red-3-d'
@@ -244,8 +261,7 @@ export type ColourName =
 	| PartyColourName
 	| BasicColourName;
 
-// The naming of the colours here serves two purposes.
-const namedColours: [ColourName, string][] = [
+const basicColours: [BasicColourName, string][] = [
 	['blue-1', '#009de5'],
 	['blue-2', '#1c64b8'],
 	['blue-3', '#00238b'],
@@ -261,7 +277,10 @@ const namedColours: [ColourName, string][] = [
 	['pink-1', '#be6aa5'],
 	['slate-2', '#675e73'],
 	['taupe-2', '#857276'],
-	['aqua-1', '#00a1ba'],
+	['aqua-1', '#00a1ba']
+];
+
+const partyColours: [PartyColourName, string][] = [
 	['ptyred', '#e11f30'],
 	['ptyblue', '#0a52bf'],
 	['ptyblack', '#757575'],
@@ -272,7 +291,10 @@ const namedColours: [ColourName, string][] = [
 	['ptylightblue', '#00A1C7'],
 	['ptyaqua', '#005D82'],
 	['ptyorange', '#E5660B'],
-	['ptypurple', '#985EB5'],
+	['ptypurple', '#985EB5']
+];
+
+const sequentialColours: [SequentialColourName, string][] = [
 	['sd-0-l', '#F2F2F2'],
 	['s-10-l', '#000000'],
 	['s-blue-1-l', '#C6DBDD'],
@@ -348,7 +370,11 @@ const namedColours: [ColourName, string][] = [
 	['s-purple-6-d', '#BC7FDA'],
 	['s-purple-7-d', '#D69AEA'],
 	['s-purple-8-d', '#EDB7F6'],
-	['s-purple-9-d', '#FFD9FC'],
+	['s-purple-9-d', '#FFD9FC']
+];
+
+const divergentColours: [DivergentColourName, string][] = [
+	['sd-0-l', '#F2F2F2'],
 	['d-red-1-l', '#efd8cb'],
 	['d-red-2-l', '#eabead'],
 	['d-red-3-l', '#e4a394'],
@@ -389,6 +415,7 @@ const namedColours: [ColourName, string][] = [
 	['d-green-8-l', '#175A68'],
 	['d-green-9-l', '#0C475B'],
 	['d-green-10-l', '#01344D'],
+	['sd-0-d', '#141414'],
 	['d-red-1-d', '#2f2124'],
 	['d-red-2-d', '#4e2d33'],
 	['d-red-3-d', '#74363f'],
@@ -438,7 +465,10 @@ const namedColours: [ColourName, string][] = [
 	['d-green-7-d', '#56ad9a'],
 	['d-green-8-d', '#72c4a7'],
 	['d-green-9-d', '#92dbb5'],
-	['d-green-10-d', '#b8f1c5'],
+	['d-green-10-d', '#b8f1c5']
+];
+
+const ordinalColours: [OrdinalColourName, string][] = [
 	['o-blue-1-l', '#6D9BB0'],
 	['o-blue-2-l', '#456EAC'],
 	['o-blue-3-l', '#2D3F9E'],
@@ -473,6 +503,14 @@ const namedColours: [ColourName, string][] = [
 	['o-purple-3-d', '#C695E2'],
 	['o-purple-4-d', '#FFBDFF'],
 	['o-5-d', '#ffffff']
+];
+
+const namedColours: [ColourName, string][] = [
+	...basicColours,
+	...partyColours,
+	...sequentialColours,
+	...divergentColours,
+	...ordinalColours
 ];
 
 const labelColours: [ColourName, string][] = [

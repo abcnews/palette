@@ -1,10 +1,6 @@
 <script lang="ts">
-	import {
-		SequentialPalette,
-		DivergentPalette,
-		isDivergentPalette,
-		isSequentialPalette
-	} from '$lib/palettes.js';
+	import { SequentialPalette, DivergentPalette } from '$lib/palettes.js';
+	import { isDivergentPalette, isSequentialPalette } from '$lib/utils.js';
 	import { createContinuousScale } from '$lib/scales.js';
 	import Stripes from '$lib/_chart-components/Stripes.svelte';
 	import GradientSwatch from '$lib/_documentation/GradientSwatch.svelte';

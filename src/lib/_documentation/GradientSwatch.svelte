@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { createContinuousScale } from '$lib/scales.js';
-	import { DivergentPalette, isDivergentPalette, SequentialPalette } from '$lib/palettes.js';
+	import type { DivergentPalette, SequentialPalette } from '$lib/palettes.js';
 	import type { ScaleDiverging, ScaleSequential } from 'd3-scale';
+	import { isDivergentPalette } from '$lib/utils.js';
 
 	export let orientation: 'v' | 'h' = 'h';
 

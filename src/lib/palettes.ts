@@ -1,12 +1,23 @@
 import { getNamedColour } from './colours.js';
-import type { ColourName } from './colours.js';
+import type {
+	ColourName,
+	DivergentColourName,
+	OrdinalColourName,
+	SequentialColourName
+} from './colours.js';
 import { piecewise, interpolateRgb } from 'd3-interpolate';
 
+/**
+ * The available colour modes (i.e. light or dark mode)
+ */
 export enum ColourMode {
 	Light = 'l',
 	Dark = 'd'
 }
 
+/**
+ * Sequential palette base colours
+ */
 export enum SequentialPalette {
 	Blue = 'blue',
 	Red = 'red',
@@ -14,6 +25,9 @@ export enum SequentialPalette {
 	Purple = 'purple'
 }
 
+/**
+ * Ordinal palette base colours
+ */
 export enum OrdinalPalette {
 	Blue = 'blue',
 	Red = 'red',
@@ -21,21 +35,44 @@ export enum OrdinalPalette {
 	Purple = 'purple'
 }
 
-export enum DivergentPalette {
-	RedBlue = 'red-blue',
-	GreenPurple = 'green-purple',
-	PurpleRed = 'purple-red'
-}
+/** A red/blue divergent palette combination */
+type RedBlue = ['red', 'blue'];
 
-export const isSequentialPalette = (palette: string): palette is SequentialPalette =>
-	Object.values<string>(SequentialPalette).includes(palette);
+/** A green/purple divergent palette combination */
+type GreenPurple = ['green', 'purple'];
 
-export const isDivergentPalette = (palette: string): palette is DivergentPalette =>
-	Object.values<string>(DivergentPalette).includes(palette);
+/** A purple/red divergent palette combination */
+type PurpleRed = ['purple', 'red'];
 
-export type CategoricalPaletteName = 'gender' | 'sentiment' | 'political';
+/** A type representing a map of divergent palette names to values */
+export type DivergentPaletteOptions = {
+	RedBlue: RedBlue;
+	GreenPurple: GreenPurple;
+	PurpleRed: PurpleRed;
+};
+
+/** Divergent palette names */
+export type DivergentPalette = RedBlue | GreenPurple | PurpleRed;
+
+/** A map of divergent palette colour combination names to values */
+export const DivergentPalette: DivergentPaletteOptions = {
+	RedBlue: ['red', 'blue'],
+	GreenPurple: ['green', 'purple'],
+	PurpleRed: ['purple', 'red']
+};
+
+/**
+ * A type representing a mapping of colour value (hex string) to a description
+ * of its meaning in a given context.
+ */
 export type ColourWithUsage = { colour: string; usage: string };
 
+/**
+ * Get a colour palette suitable for use visualisation categorical data.
+ *
+ * @param n The number of categories [1-7] for which to get a colour palette
+ * @returns An array of colour values (in hex format)
+ */
 export const getNominalCategoricalPalette = (n: number): string[] => {
 	const defaultPalette: ColourName[] = ['blue-1', 'blue-2', 'green-1', 'blue-2', 'grey-4'];
 	const extendedPalette: ColourName[] = [
@@ -61,11 +98,21 @@ export const getNominalCategoricalPalette = (n: number): string[] => {
 	);
 };
 
+/**
+ * Get colours suitable for emphasising or deemphasising elements in a data visualisation
+ *
+ * @returns An object with `emphasise` and `deemphasise` keys and hex colour values
+ */
 export const getEmphasisColours = () => ({
 	emphasise: getNamedColour('orange-1'),
 	deemphasise: getNamedColour('grey-1')
 });
 
+/**
+ * Get a colour palette suitable for visualising gender
+ *
+ * @returns An object defining a palette suitable for visualising gender
+ */
 export const getGenderPalette = (): Record<string, ColourWithUsage> => {
 	return {
 		nonbinary: { colour: getNamedColour('taupe-2'), usage: 'Non-binary' },
@@ -74,6 +121,11 @@ export const getGenderPalette = (): Record<string, ColourWithUsage> => {
 	};
 };
 
+/**
+ * Get a colour palette suitable for visualising sentiment
+ *
+ * @returns An object defining a colour palette suitable for visualising sentiment
+ */
 export const getSentimentPalette = (): Record<string, ColourWithUsage> => {
 	return {
 		positive: { colour: getNamedColour('aqua-1'), usage: 'Positive / Up' },
@@ -81,6 +133,12 @@ export const getSentimentPalette = (): Record<string, ColourWithUsage> => {
 		neutral: { colour: getNamedColour('grey-1'), usage: 'Neutral / Steady' }
 	};
 };
+
+/**
+ * Get a colour palette suitable for visualising political parties.
+ *
+ * @returns An object defining a colour palette suitable for visualising political parties
+ */
 export const getPoliticalPalette = (): Record<string, ColourWithUsage> => {
 	return {
 		ptyred: { colour: getNamedColour('ptyred'), usage: 'Labor' },
@@ -103,51 +161,114 @@ export const getPoliticalPalette = (): Record<string, ColourWithUsage> => {
 	};
 };
 
+/**
+ * Generate an array of colour names that define a sequential palette with the given params.
+ *
+ * @param variant The colour variant of the palette to generate
+ * @param mode The colour mode (light/dark) of the palette to generate
+ * @returns An array of colour names
+ */
 const getSequentialPalette = (
 	variant: SequentialPalette = SequentialPalette.Blue,
 	mode: ColourMode = ColourMode.Light
 ) => {
-	const palette: string[] = [`sd-0-${mode}`];
-	for (let i = 1; i < 10; i++) {
-		palette.push(`s-${variant}-${i}-${mode}`);
-	}
+	const palette: SequentialColourName[] = [`sd-0-${mode}`];
+	const numbers: ['1', '2', '3', '4', '5', '6', '7', '8', '9'] = [
+		'1',
+		'2',
+		'3',
+		'4',
+		'5',
+		'6',
+		'7',
+		'8',
+		'9'
+	];
+	numbers.forEach((d) => {
+		palette.push(`s-${variant}-${d}-${mode}`);
+	});
 	palette.push(`s-10-${mode}`);
 	return palette;
 };
 
+/**
+ * Generate an array of colour names that define an ordinal palette with the given params.
+ *
+ * @param variant The colour variant of the palette to generate
+ * @param mode The colour mode (light/dark) of the palette to generate
+ * @returns An array of colour names
+ */
 const getOrdinalPalette = (
 	variant: OrdinalPalette = OrdinalPalette.Blue,
 	mode: ColourMode = ColourMode.Light
 ) => {
-	const palette: string[] = [];
-	for (let i = 1; i < 5; i++) {
-		palette.push(`o-${variant}-${i}-${mode}`);
-	}
+	const palette: OrdinalColourName[] = [];
+	const numbers: ['1', '2', '3', '4'] = ['1', '2', '3', '4'];
+	numbers.forEach((d) => {
+		palette.push(`o-${variant}-${d}-${mode}`);
+	});
 	palette.push(`o-5-${mode}`);
 	return palette;
 };
 
+/**
+ * Generate an array of colour names that define a divergent palette with the given params.
+ *
+ * @param variant The colour variant of the palette to generate
+ * @param mode The colour mode (light/dark) of the palette to generate
+ * @returns An array of colour names
+ */
 const getDivergentPalette = (
 	variant: DivergentPalette = DivergentPalette.RedBlue,
 	mode: ColourMode = ColourMode.Light
 ) => {
-	const [left, right] = variant.split('-');
-	const palette: string[] = [];
-	let i = 10;
-	for (; i > 0; i--) {
-		palette.push(
-			`d-${left}-${i}-${mode}${left === 'purple' && mode === ColourMode.Dark ? '-2' : ''}`
-		);
-	}
+	const [left, right] = variant;
+	const palette: DivergentColourName[] = [];
+	const numbers: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'] = [
+		'1',
+		'2',
+		'3',
+		'4',
+		'5',
+		'6',
+		'7',
+		'8',
+		'9',
+		'10'
+	];
+	numbers.reverse().forEach((d) => {
+		if (left === 'purple') {
+			if (mode === ColourMode.Dark) {
+				palette.push(`d-${left}-${d}-${mode}-2`);
+			} else {
+				palette.push(`d-${left}-${d}-${mode}`);
+			}
+		} else {
+			palette.push(`d-${left}-${d}-${mode}`);
+		}
+	});
 	palette.push(`sd-0-${mode}`);
-	for (i++; i < 11; i++) {
-		palette.push(
-			`d-${right}-${i}-${mode}${right === 'purple' && mode === ColourMode.Dark ? '-1' : ''}`
-		);
-	}
+	numbers.reverse().forEach((d) => {
+		if (right === 'purple') {
+			if (mode === ColourMode.Dark) {
+				palette.push(`d-${right}-${d}-${mode}-1`);
+			} else {
+				palette.push(`d-${right}-${d}-${mode}`);
+			}
+		} else {
+			palette.push(`d-${right}-${d}-${mode}`);
+		}
+	});
 	return palette;
 };
 
+/**
+ * Get an interpolator function for a sequential continuous palette with the given params.
+ *
+ * @param variant The colour variant the returned interpolator should use
+ * @param mode The colour mode (light/dark) the returned interpolator should use
+ * @returns An interpolator function that takes a number (0-1) and returns a colour in `rgb(x,y,z)` format
+ */
 export const getSequentialContinuousPaletteInterpolator = (
 	variant: SequentialPalette = SequentialPalette.Blue,
 	mode: ColourMode = ColourMode.Light
@@ -156,6 +277,14 @@ export const getSequentialContinuousPaletteInterpolator = (
 	return piecewise(interpolateRgb, getSequentialPalette(variant, mode).map(getNamedColour));
 };
 
+/**
+ * Get an array of colours that define a sequential stepped palette with the given params.
+ *
+ * @param steps The number of steps [2-10] to use for the generated sequential stepped palette
+ * @param variant The colour variant the returned palette should use
+ * @param mode The colour mode (light/dark) the returned palette should use
+ * @returns An array of colour strings in `rgb(x,y,z)` format
+ */
 export const getSequentialSteppedPalette = (
 	steps: number,
 	variant: SequentialPalette = SequentialPalette.Blue,
@@ -179,6 +308,14 @@ export const getSequentialSteppedPalette = (
 	return palette;
 };
 
+/**
+ * Get an ordinal categorical palette with the given params.
+ *
+ * @param steps The number of steps (2-5) to use for the generated ordinal palette
+ * @param variant The colour variant the returned palette should use
+ * @param mode The colour mode (light/dark) the returned palette should use
+ * @returns An array of colour strings in `rgb(x,y,z)` format
+ */
 export const getOrdinalCategoricalPalette = (
 	steps: number,
 	variant: OrdinalPalette = OrdinalPalette.Blue,
@@ -205,6 +342,13 @@ export const getOrdinalCategoricalPalette = (
 	return palette;
 };
 
+/**
+ * Get an interpolator function for a divergent continuous palette with the given params.
+ *
+ * @param variant The colour variant the returned interpolator should use
+ * @param mode The colour mode (light/dark) the returned interpolator should use
+ * @returns An interpolator function that takes a number (0-1) and returns a colour in `rgb(x,y,z)` format
+ */
 export const getDivergentContinuousPaletteInterpolator = (
 	variant: DivergentPalette = DivergentPalette.RedBlue,
 	mode: ColourMode = ColourMode.Light
@@ -213,6 +357,14 @@ export const getDivergentContinuousPaletteInterpolator = (
 	return piecewise(interpolateRgb, getDivergentPalette(variant, mode).map(getNamedColour));
 };
 
+/**
+ * Get an array of colours that define a divergent stepped palette with the given params.
+ *
+ * @param steps The number of steps [1-10] to use for each side of the generated divergent stepped palette
+ * @param variant The colour variant the returned palette should use
+ * @param mode The colour mode (light/dark) the returned palette should use
+ * @returns An array of colour strings in `rgb(x,y,z)` format
+ */
 export const getDivergentSteppedPalette = (
 	steps: number,
 	variant: DivergentPalette = DivergentPalette.RedBlue,

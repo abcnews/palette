@@ -1,9 +1,8 @@
 import {
 	getDivergentContinuousPaletteInterpolator,
-	getSequentialContinuousPaletteInterpolator,
-	isDivergentPalette,
-	isSequentialPalette
+	getSequentialContinuousPaletteInterpolator
 } from './palettes.js';
+import { isDivergentPalette, isSequentialPalette } from './utils.js';
 import type { SequentialPalette, DivergentPalette } from './palettes.js';
 import { scaleDiverging, scaleSequential } from 'd3-scale';
 
