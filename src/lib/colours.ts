@@ -138,6 +138,16 @@ export type DivergentColourName =
 	| 'd-purple-8-l'
 	| 'd-purple-9-l'
 	| 'd-purple-10-l'
+	| 'd-violet-1-l'
+	| 'd-violet-2-l'
+	| 'd-violet-3-l'
+	| 'd-violet-4-l'
+	| 'd-violet-5-l'
+	| 'd-violet-6-l'
+	| 'd-violet-7-l'
+	| 'd-violet-8-l'
+	| 'd-violet-9-l'
+	| 'd-violet-10-l'
 	| 'd-green-1-l'
 	| 'd-green-2-l'
 	| 'd-green-3-l'
@@ -169,26 +179,26 @@ export type DivergentColourName =
 	| 'd-blue-8-d'
 	| 'd-blue-9-d'
 	| 'd-blue-10-d'
-	| 'd-purple-1-d-1'
-	| 'd-purple-2-d-1'
-	| 'd-purple-3-d-1'
-	| 'd-purple-4-d-1'
-	| 'd-purple-5-d-1'
-	| 'd-purple-6-d-1'
-	| 'd-purple-7-d-1'
-	| 'd-purple-8-d-1'
-	| 'd-purple-9-d-1'
-	| 'd-purple-10-d-1'
-	| 'd-purple-1-d-2'
-	| 'd-purple-2-d-2'
-	| 'd-purple-3-d-2'
-	| 'd-purple-4-d-2'
-	| 'd-purple-5-d-2'
-	| 'd-purple-6-d-2'
-	| 'd-purple-7-d-2'
-	| 'd-purple-8-d-2'
-	| 'd-purple-9-d-2'
-	| 'd-purple-10-d-2'
+	| 'd-purple-1-d'
+	| 'd-purple-2-d'
+	| 'd-purple-3-d'
+	| 'd-purple-4-d'
+	| 'd-purple-5-d'
+	| 'd-purple-6-d'
+	| 'd-purple-7-d'
+	| 'd-purple-8-d'
+	| 'd-purple-9-d'
+	| 'd-purple-10-d'
+	| 'd-violet-1-d'
+	| 'd-violet-2-d'
+	| 'd-violet-3-d'
+	| 'd-violet-4-d'
+	| 'd-violet-5-d'
+	| 'd-violet-6-d'
+	| 'd-violet-7-d'
+	| 'd-violet-8-d'
+	| 'd-violet-9-d'
+	| 'd-violet-10-d'
 	| 'd-green-1-d'
 	| 'd-green-2-d'
 	| 'd-green-3-d'
@@ -405,6 +415,16 @@ const divergentColours: [DivergentColourName, string][] = [
 	['d-purple-8-l', '#632D87'],
 	['d-purple-9-l', '#4B1876'],
 	['d-purple-10-l', '#330265'],
+	['d-violet-1-l', '#E4D7E4'],
+	['d-violet-2-l', '#D5BCD9'],
+	['d-violet-3-l', '#C7A2CC'],
+	['d-violet-4-l', '#B787C0'],
+	['d-violet-5-l', '#A46FB4'],
+	['d-violet-6-l', '#8F58A7'],
+	['d-violet-7-l', '#794298'],
+	['d-violet-8-l', '#632D87'],
+	['d-violet-9-l', '#4B1876'],
+	['d-violet-10-l', '#330265'],
 	['d-green-1-l', '#D0E1D4'],
 	['d-green-2-l', '#B2CEBD'],
 	['d-green-3-l', '#94BBA9'],
@@ -436,26 +456,26 @@ const divergentColours: [DivergentColourName, string][] = [
 	['d-blue-8-d', '#55c1f1'],
 	['d-blue-9-d', '#6ddbf9'],
 	['d-blue-10-d', '#87F5FF'],
-	['d-purple-1-d-1', '#2B2135'],
-	['d-purple-2-d-1', '#412f53'],
-	['d-purple-3-d-1', '#5b3c73'],
-	['d-purple-4-d-1', '#754c8f'],
-	['d-purple-5-d-1', '#905cae'],
-	['d-purple-6-d-1', '#ad6ccd'],
-	['d-purple-7-d-1', '#c780e5'],
-	['d-purple-8-d-1', '#db9af5'],
-	['d-purple-9-d-1', '#e9b7fb'],
-	['d-purple-10-d-1', '#f5d6ff'],
-	['d-purple-1-d-2', '#22252e'],
-	['d-purple-2-d-2', '#333452'],
-	['d-purple-3-d-2', '#494475'],
-	['d-purple-4-d-2', '#615498'],
-	['d-purple-5-d-2', '#7a66b2'],
-	['d-purple-6-d-2', '#9479c8'],
-	['d-purple-7-d-2', '#af8de1'],
-	['d-purple-8-d-2', '#c8a3f3'],
-	['d-purple-9-d-2', '#debdfc'],
-	['d-purple-10-d-2', '#f1d9ff'],
+	['d-purple-1-d', '#2B2135'],
+	['d-purple-2-d', '#412f53'],
+	['d-purple-3-d', '#5b3c73'],
+	['d-purple-4-d', '#754c8f'],
+	['d-purple-5-d', '#905cae'],
+	['d-purple-6-d', '#ad6ccd'],
+	['d-purple-7-d', '#c780e5'],
+	['d-purple-8-d', '#db9af5'],
+	['d-purple-9-d', '#e9b7fb'],
+	['d-purple-10-d', '#f5d6ff'],
+	['d-violet-1-d', '#22252e'],
+	['d-violet-2-d', '#333452'],
+	['d-violet-3-d', '#494475'],
+	['d-violet-4-d', '#615498'],
+	['d-violet-5-d', '#7a66b2'],
+	['d-violet-6-d', '#9479c8'],
+	['d-violet-7-d', '#af8de1'],
+	['d-violet-8-d', '#c8a3f3'],
+	['d-violet-9-d', '#debdfc'],
+	['d-violet-10-d', '#f1d9ff'],
 	['d-green-1-d', '#1f2628'],
 	['d-green-2-d', '#273a3d'],
 	['d-green-3-d', '#2f5053'],

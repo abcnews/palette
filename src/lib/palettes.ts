@@ -39,26 +39,26 @@ export enum OrdinalPalette {
 type RedBlue = ['red', 'blue'];
 
 /** A green/purple divergent palette combination */
-type GreenPurple = ['green', 'purple'];
+type PurpleGreen = ['purple', 'green'];
 
 /** A purple/red divergent palette combination */
-type PurpleRed = ['purple', 'red'];
+type RedViolet = ['red', 'violet'];
 
 /** A type representing a map of divergent palette names to values */
 export type DivergentPaletteOptions = {
 	RedBlue: RedBlue;
-	GreenPurple: GreenPurple;
-	PurpleRed: PurpleRed;
+	PurpleGreen: PurpleGreen;
+	RedViolet: RedViolet;
 };
 
 /** Divergent palette names */
-export type DivergentPalette = RedBlue | GreenPurple | PurpleRed;
+export type DivergentPalette = RedBlue | PurpleGreen | RedViolet;
 
 /** A map of divergent palette colour combination names to values */
 export const DivergentPalette: DivergentPaletteOptions = {
 	RedBlue: ['red', 'blue'],
-	GreenPurple: ['green', 'purple'],
-	PurpleRed: ['purple', 'red']
+	PurpleGreen: ['purple', 'green'],
+	RedViolet: ['red', 'violet']
 };
 
 /**
@@ -237,27 +237,11 @@ const getDivergentPalette = (
 		'10'
 	];
 	numbers.reverse().forEach((d) => {
-		if (left === 'purple') {
-			if (mode === ColourMode.Dark) {
-				palette.push(`d-${left}-${d}-${mode}-2`);
-			} else {
-				palette.push(`d-${left}-${d}-${mode}`);
-			}
-		} else {
-			palette.push(`d-${left}-${d}-${mode}`);
-		}
+		palette.push(`d-${left}-${d}-${mode}`);
 	});
 	palette.push(`sd-0-${mode}`);
 	numbers.reverse().forEach((d) => {
-		if (right === 'purple') {
-			if (mode === ColourMode.Dark) {
-				palette.push(`d-${right}-${d}-${mode}-1`);
-			} else {
-				palette.push(`d-${right}-${d}-${mode}`);
-			}
-		} else {
-			palette.push(`d-${right}-${d}-${mode}`);
-		}
+		palette.push(`d-${right}-${d}-${mode}`);
 	});
 	return palette;
 };
