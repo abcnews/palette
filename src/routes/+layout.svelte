@@ -3,7 +3,38 @@
 </svelte:head>
 
 <div class="wrapper">
-	<h1>ABC News Digital Data Visualisation Themes</h1>
+	<h1>ABC News Digital Data Visualisation Colour Palettes</h1>
+	<div class="menu">
+		<ul>
+			<li>
+				<a href="/categorical">Categorical</a>
+				<ul>
+					<li>
+						<a href="/categorical#nominal">Nominal</a>
+						<ul>
+							<li><a href="/categorical#generic">Generic</a></li>
+							<li><a href="/categorical#semantic">Semantic</a></li>
+						</ul>
+					</li>
+					<li><a href="/categorical#ordinal">Ordinal</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="/sequential">Sequential</a>
+				<ul>
+					<li><a href="/sequential#continuous">Continuous</a></li>
+					<li><a href="/sequential#stepped">Stepped</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="/divergent">Divergent</a>
+				<ul>
+					<li><a href="/divergent#continuous">Continuous</a></li>
+					<li><a href="/divergent#stepped">Stepped</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
 	<slot />
 </div>
 

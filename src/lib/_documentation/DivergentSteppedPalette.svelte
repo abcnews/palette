@@ -1,32 +1,13 @@
 <script lang="ts">
 	import { DivergentPalette, getDivergentSteppedPalette } from '$lib/palettes.js';
+	import { colourLuminance } from '$lib/utils.js';
 	import { color } from 'd3-color';
-	export let selectedPalette: DivergentPalette;
+	export let palette: DivergentPalette;
 
 	$: lengths = new Array<string[]>(10)
 		.fill(undefined)
-		.map((_, i) => getDivergentSteppedPalette(10 - i, selectedPalette));
+		.map((_, i) => getDivergentSteppedPalette(10 - i, palette));
 
-	const colourLuminance = (c: string) => {
-		const rgb = color(c);
-		const l = ['r', 'g', 'b']
-			.map((d) => {
-				const ratio = rgb[d] / 255;
-				const v = ratio <= 0.04045 ? ratio / 12.92 : ((ratio + 0.055) / 1.055) ** 2.4;
-				return v;
-			})
-			.reduce((t, d, i, arr) => {
-				switch (i) {
-					case 0:
-						return t + 0.2126 * d;
-					case 1:
-						return t + 0.7152 * d;
-					case 2:
-						return t + 0.0722 * d;
-				}
-			}, 0);
-		return l;
-	};
 	let height = 50;
 	let width = 90;
 	let cornerRadius = 5;

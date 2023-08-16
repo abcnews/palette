@@ -1,43 +1,14 @@
 <script lang="ts">
 	import { OrdinalPalette, getOrdinalCategoricalPalette } from '$lib/palettes.js';
+	import { colourLuminance } from '$lib/utils.js';
 	import { color } from 'd3-color';
 
-	let selectedPalette: OrdinalPalette;
+	export let palette: OrdinalPalette;
 
 	$: lengths = new Array<string[]>(4)
 		.fill(undefined)
-		.map((_, i) => getOrdinalCategoricalPalette(5 - i, selectedPalette));
-
-	const colourLuminance = (c: string) => {
-		const rgb = color(c);
-		const l = ['r', 'g', 'b']
-			.map((d) => {
-				const ratio = rgb[d] / 255;
-				const v = ratio <= 0.04045 ? ratio / 12.92 : ((ratio + 0.055) / 1.055) ** 2.4;
-				return v;
-			})
-			.reduce((t, d, i, arr) => {
-				switch (i) {
-					case 0:
-						return t + 0.2126 * d;
-					case 1:
-						return t + 0.7152 * d;
-					case 2:
-						return t + 0.0722 * d;
-				}
-			}, 0);
-		return l;
-	};
+		.map((_, i) => getOrdinalCategoricalPalette(5 - i, palette));
 </script>
-
-<div class="field">
-	<label for="palette">Select palette</label>
-	<select id="palette" bind:value={selectedPalette}>
-		{#each Object.entries(OrdinalPalette) as [name, value]}
-			<option {value}>{name}</option>
-		{/each}
-	</select>
-</div>
 
 <div>
 	{#each lengths as colours}
