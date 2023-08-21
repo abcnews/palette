@@ -1,9 +1,20 @@
+<script lang="ts">
+	import { theme } from '$lib/stores.js';
+</script>
+
 <svelte:head>
 	<link rel="stylesheet" href="/fonts.css" />
+	<meta name="color-scheme" content={$theme == 'system' ? 'light dark' : $theme} />
 </svelte:head>
 
 <div class="wrapper">
 	<h1>ABC News Digital Data Visualisation Colour Palettes</h1>
+	<select bind:value={$theme}>
+		<option value="system">System</option>
+		<option value="light">Light</option>
+		<option value="dark">Dark</option>
+	</select>
+
 	<div class="menu">
 		<ul>
 			<li>

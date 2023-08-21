@@ -3,22 +3,18 @@
 	import DivergentContinuousPalette from '$lib/_documentation/DivergentContinuousPalette.svelte';
 	import { ColourMode, DivergentPalette } from '$lib/palettes.js';
 	import DivergentSteppedPalette from '$lib/_documentation/DivergentSteppedPalette.svelte';
-	import ColourModeSelector from '$lib/_documentation/ColourModeSelector.svelte';
+	import { theme } from '$lib/stores.js';
 
 	export let data;
 
 	let palette: DivergentPalette = DivergentPalette.RedBlue;
-	let mode: ColourMode = ColourMode.Light;
+	let mode: ColourMode = $theme === 'dark' ? ColourMode.Dark : ColourMode.Light;
+	$: mode = $theme === 'dark' ? ColourMode.Dark : ColourMode.Light;
 </script>
-
-<svelte:head>
-	<meta name="color-scheme" content={mode === 'l' ? 'light' : 'dark'} />
-</svelte:head>
 
 <h2>Divergent</h2>
 
 <DivergentPaletteSelector bind:selectedPalette={palette} />
-<ColourModeSelector bind:selectedMode={mode} />
 
 <h3 id="continuous">Continuous</h3>
 <DivergentContinuousPalette {palette} {mode} data={data.globalAverageTemperature} />

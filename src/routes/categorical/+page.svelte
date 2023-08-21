@@ -7,14 +7,12 @@
 	import OrdinalCategoricalPalette from '$lib/_documentation/OrdinalCategoricalPalette.svelte';
 	import { ColourMode, OrdinalPalette } from '$lib/palettes.js';
 	import OrdinalPaletteSelector from '$lib/_documentation/OrdinalPaletteSelector.svelte';
-	import ColourModeSelector from '$lib/_documentation/ColourModeSelector.svelte';
-	let ordinalPalette: OrdinalPalette = OrdinalPalette.Blue;
-	let mode: ColourMode = ColourMode.Light;
-</script>
 
-<svelte:head>
-	<meta name="color-scheme" content={mode === 'l' ? 'light' : 'dark'} />
-</svelte:head>
+	import { theme } from '$lib/stores.js';
+	let ordinalPalette: OrdinalPalette = OrdinalPalette.Blue;
+	let mode: ColourMode = $theme === 'dark' ? ColourMode.Dark : ColourMode.Light;
+	$: mode = $theme === 'dark' ? ColourMode.Dark : ColourMode.Light;
+</script>
 
 <h2 id="categorical">Categorical</h2>
 <p>
@@ -77,5 +75,4 @@
 </p>
 
 <OrdinalPaletteSelector bind:selectedPalette={ordinalPalette} />
-<ColourModeSelector bind:selectedMode={mode} />
 <OrdinalCategoricalPalette palette={ordinalPalette} {mode} />
