@@ -70,94 +70,162 @@ export type ColourWithUsage = { colour: string; usage: string };
 /**
  * Get a colour palette suitable for use visualisation categorical data.
  *
- * @param n The number of categories [1-7] for which to get a colour palette
- * @returns An array of colour values (in hex format)
+ * @param n The number of categories [1-8] for which to get a colour palette
+ * @param mode Which colour mode (dark/light) should the returned palette be suitable for?
+ * @returns An array of colour values (in hex format).
  */
-export const getNominalCategoricalPalette = (n: number): string[] => {
-	const defaultPalette: ColourName[] = ['blue-1', 'blue-2', 'green-1', 'blue-2', 'grey-4'];
-	const extendedPalette: ColourName[] = [
-		'blue-1',
-		'red-1',
-		'blue-4',
-		'purple-1',
-		'pink-1',
-		'slate-2',
-		'green-2'
+export const getDefaultCategoricalPalette = (
+	n: number,
+	mode: ColourMode = ColourMode.Light
+): string[] => {
+	if (n > 8 || n < 1) {
+		throw new Error('Categorical palettes have a maximum of 8 colours.');
+	}
+
+	const palette: ColourName[] = [
+		`blue-${mode}`,
+		mode === ColourMode.Light ? `darkblue-l` : `lightblue-d`,
+		`pink-${mode}`,
+		`purple-${mode}`,
+		`teal-${mode}`,
+		`red-${mode}`,
+		mode === ColourMode.Light ? `darkred-l` : `lightpink-d`,
+		`green-${mode}`
 	];
 
-	if (n <= defaultPalette.length) {
-		return defaultPalette.slice(0, n).map(getNamedColour);
-	}
-
-	if (n <= extendedPalette.length) {
-		return extendedPalette.slice(0, n).map(getNamedColour);
-	}
-
-	throw new Error(
-		`Cannot generate nominal categorical palette of size ${n}. The maximum palette size is ${extendedPalette.length}.`
-	);
+	return palette.slice(0, n).map(getNamedColour);
 };
 
 /**
- * Get colours suitable for emphasising or deemphasising elements in a data visualisation
+ * Get a colour palette suitable for use visualisation categorical data with emphasis and deemphasis.
  *
- * @returns An object with `emphasise` and `deemphasise` keys and hex colour values
+ * @param n The number of categories (excluding emphasis colours) [1-3] for which to get a colour palette
+ * @param mode Which colour mode (dark/light) should the returned palette be suitable for?
+ * @returns An object containing an array of colour values (in hex format) and emphasis and deemphasis colours.
+ * @todo Rename 'emphasis' to 'focus'
  */
-export const getEmphasisColours = () => ({
-	emphasise: getNamedColour('orange-1'),
-	deemphasise: getNamedColour('grey-1')
-});
+export const getEmphasisCategoricalPalette = (
+	n: number,
+	mode: ColourMode = ColourMode.Light
+): { palette: string[]; emphasis: string; deemphasis: string } => {
+	if (n > 3 || n < 1) {
+		throw new Error(
+			'Categorical palettes with emphasis colours have a maximum of 3 colours (excluding the emphasis and deemphasis colours).'
+		);
+	}
 
-/**
- * Get a colour palette suitable for visualising gender
- *
- * @returns An object defining a palette suitable for visualising gender
- */
-export const getGenderPalette = (): Record<string, ColourWithUsage> => {
+	const palette: ColourName[] = [
+		`blue-${mode}`,
+		mode === ColourMode.Light ? `darkblue-l` : 'lightblue-d',
+		`teal-${mode}`
+	];
+
 	return {
-		nonbinary: { colour: getNamedColour('taupe-2'), usage: 'Non-binary' },
-		female: { colour: getNamedColour('purple-2'), usage: 'Female' },
-		male: { colour: getNamedColour('blue-1'), usage: 'Male' }
+		palette: palette.slice(0, n).map(getNamedColour),
+		emphasis: getNamedColour(`orange-${mode}`),
+		deemphasis: getNamedColour(`grey-${mode}`)
 	};
 };
 
 /**
+ * Get a colour palette suitable for visualising gender
+ * @param mode Which colour mode (dark/light) should the returned palette be suitable for?
+ * @returns An object defining a palette suitable for visualising gender
+ */
+export const getGenderPalette = (
+	mode: ColourMode = ColourMode.Light
+): Record<string, ColourWithUsage> => {
+	return {
+		nonbinary: { colour: getNamedColour(`taupe-${mode}`), usage: 'Non-binary' },
+		female: { colour: getNamedColour(`purple-${mode}`), usage: 'Female' },
+		male: { colour: getNamedColour(`blue-${mode}`), usage: 'Male' }
+	};
+};
+
+export type SentimentPalette = {
+	negative: string[];
+	neutral: string;
+	positive: string[];
+	na: string;
+};
+
+/**
  * Get a colour palette suitable for visualising sentiment
- *
+ * @param n The number of positive/negative sentiment levels [1-3]
+ * @param mode Which colour mode (dark/light) should the returned palette be suitable for?
  * @returns An object defining a colour palette suitable for visualising sentiment
  */
-export const getSentimentPalette = (): Record<string, ColourWithUsage> => {
+export const getSentimentPalette = (
+	n: number,
+	mode: ColourMode = ColourMode.Light
+): SentimentPalette => {
+	let negative: ColourName[];
+	let positive: ColourName[];
+
+	switch (n) {
+		case 1:
+			negative = mode === ColourMode.Light ? ['red-l'] : ['red-d'];
+			positive = mode === ColourMode.Light ? ['blue-l'] : ['blue-d'];
+			break;
+
+		case 2:
+			negative = mode === ColourMode.Light ? ['red-l', 'midred-l'] : ['lightpink-d', 'red-d'];
+			positive = mode === ColourMode.Light ? ['blue-l', 'midblue-l'] : ['lightblue-d', 'blue-d'];
+			break;
+		case 3:
+			negative =
+				mode === ColourMode.Light
+					? ['red-l', 'midred-l', 'darkred-l']
+					: ['lightpink-d', 'midred-d', 'red-d'];
+			positive =
+				mode === ColourMode.Light
+					? ['blue-l', 'midblue-l', 'darkblue-l']
+					: ['lightblue-d', 'midblue-d', 'blue-d'];
+			break;
+		default:
+			throw new Error('Number of sentiment categories must be between 1 and 3');
+	}
+
 	return {
-		positive: { colour: getNamedColour('aqua-1'), usage: 'Positive / Up' },
-		negative: { colour: getNamedColour('red-1'), usage: 'Negative / Down' },
-		neutral: { colour: getNamedColour('grey-1'), usage: 'Neutral / Steady' }
+		negative: negative.map(getNamedColour),
+		neutral: getNamedColour(`grey-${mode}`),
+		positive: positive.map(getNamedColour),
+		na: getNamedColour(mode === ColourMode.Light ? `darkgrey-l` : `lightgrey-d`)
 	};
 };
 
 /**
  * Get a colour palette suitable for visualising political parties.
- *
+ * @param mode Which colour mode (dark/light) should the returned palette be suitable for?
  * @returns An object defining a colour palette suitable for visualising political parties
  */
-export const getPoliticalPalette = (): Record<string, ColourWithUsage> => {
+export const getPoliticalPalette = (
+	mode: ColourMode = ColourMode.Light
+): Record<string, ColourWithUsage> => {
 	return {
-		ptyred: { colour: getNamedColour('ptyred'), usage: 'Labor' },
-		ptyblue: { colour: getNamedColour('ptyblue'), usage: 'Liberal/Coalition (except Nationals)' },
-		ptyblack: { colour: getNamedColour('ptyblack'), usage: 'Independents, others' },
-		ptygreen: { colour: getNamedColour('ptygreen'), usage: 'Nationals' },
-		ptylightgreen: { colour: getNamedColour('ptylightgreen'), usage: 'Greens' },
-		ptygold: { colour: getNamedColour('ptygold'), usage: 'United Australia / Country Lib (NT)' },
+		ptyred: { colour: getNamedColour(`p-red-${mode}`), usage: 'Labor' },
+		ptyblue: {
+			colour: getNamedColour(`p-blue-${mode}`),
+			usage: 'Liberal/Coalition (except Nationals)'
+		},
+		ptyblack: { colour: getNamedColour(`p-black-${mode}`), usage: 'Independents, others' },
+		ptygreen: { colour: getNamedColour(`p-green-${mode}`), usage: 'Nationals' },
+		ptylightgreen: { colour: getNamedColour(`p-lightgreen-${mode}`), usage: 'Greens' },
+		ptygold: {
+			colour: getNamedColour(`p-gold-${mode}`),
+			usage: 'United Australia / Country Lib (NT)'
+		},
 		ptybrown: {
-			colour: getNamedColour('ptybrown'),
+			colour: getNamedColour(`p-brown-${mode}`),
 			usage: "Katter's Australia Party / Shooters, Fishers & Farmers"
 		},
 		ptylightblue: {
-			colour: getNamedColour('ptylightblue'),
+			colour: getNamedColour(`p-lightblue-${mode}`),
 			usage: 'Family First / Christian Democrats'
 		},
-		ptyaqua: { colour: getNamedColour('ptyaqua'), usage: 'Territory Alliance (NT)' },
-		ptyorange: { colour: getNamedColour('ptyorange'), usage: 'One Nation' },
-		ptypurple: { colour: getNamedColour('ptypurple'), usage: 'Rarely used' }
+		ptyaqua: { colour: getNamedColour(`p-aqua-${mode}`), usage: 'Territory Alliance (NT)' },
+		ptyorange: { colour: getNamedColour(`p-orange-${mode}`), usage: 'One Nation' },
+		ptypurple: { colour: getNamedColour(`p-purple-${mode}`), usage: 'Rarely used' }
 	};
 };
 
@@ -187,7 +255,7 @@ const getSequentialPalette = (
 	numbers.forEach((d) => {
 		palette.push(`s-${variant}-${d}-${mode}`);
 	});
-	palette.push(`s-10-${mode}`);
+	palette.push(`so-10-${mode}`);
 	return palette;
 };
 
@@ -207,7 +275,7 @@ const getOrdinalPalette = (
 	numbers.forEach((d) => {
 		palette.push(`o-${variant}-${d}-${mode}`);
 	});
-	palette.push(`o-5-${mode}`);
+	palette.push(`so-10-${mode}`);
 	return palette;
 };
 

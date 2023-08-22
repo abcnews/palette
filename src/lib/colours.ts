@@ -16,23 +16,34 @@ Sequential, divergent and ordinal colour names follow a specific format:
 */
 
 export type PartyColourName =
-	| 'ptyred'
-	| 'ptyblue'
-	| 'ptyblack'
-	| 'ptygreen'
-	| 'ptylightgreen'
-	| 'ptygold'
-	| 'ptybrown'
-	| 'ptylightblue'
-	| 'ptyaqua'
-	| 'ptyorange'
-	| 'ptypurple';
+	| 'p-red-l'
+	| 'p-blue-l'
+	| 'p-black-l'
+	| 'p-green-l'
+	| 'p-lightgreen-l'
+	| 'p-gold-l'
+	| 'p-brown-l'
+	| 'p-lightblue-l'
+	| 'p-aqua-l'
+	| 'p-orange-l'
+	| 'p-purple-l'
+	| 'p-red-d'
+	| 'p-blue-d'
+	| 'p-black-d'
+	| 'p-green-d'
+	| 'p-lightgreen-d'
+	| 'p-gold-d'
+	| 'p-brown-d'
+	| 'p-lightblue-d'
+	| 'p-aqua-d'
+	| 'p-orange-d'
+	| 'p-purple-d';
 
 export type SequentialColourName =
 	| 'sd-0-l'
-	| 's-10-l'
+	| 'so-10-l'
 	| 'sd-0-d'
-	| 's-10-d'
+	| 'so-10-d'
 	| 's-blue-1-l'
 	| 's-blue-2-l'
 	| 's-blue-3-l'
@@ -227,7 +238,7 @@ export type OrdinalColourName =
 	| 'o-purple-2-l'
 	| 'o-purple-3-l'
 	| 'o-purple-4-l'
-	| 'o-5-l'
+	| 'so-10-l'
 	| 'o-blue-1-d'
 	| 'o-blue-2-d'
 	| 'o-blue-3-d'
@@ -244,25 +255,37 @@ export type OrdinalColourName =
 	| 'o-purple-2-d'
 	| 'o-purple-3-d'
 	| 'o-purple-4-d'
-	| 'o-5-d';
+	| 'so-10-d';
 
 export type BasicColourName =
-	| 'blue-1'
-	| 'blue-2'
-	| 'blue-3'
-	| 'blue-4'
-	| 'red-1'
-	| 'green-1'
-	| 'green-2'
-	| 'grey-1'
-	| 'grey-4'
-	| 'orange-1'
-	| 'purple-1'
-	| 'purple-2'
-	| 'pink-1'
-	| 'slate-2'
-	| 'taupe-2'
-	| 'aqua-1';
+	| 'blue-l'
+	| 'midblue-l'
+	| 'darkblue-l'
+	| 'pink-l'
+	| 'purple-l'
+	| 'teal-l'
+	| 'red-l'
+	| 'midred-l'
+	| 'darkred-l'
+	| 'green-l'
+	| 'orange-l'
+	| 'grey-l'
+	| 'darkgrey-l'
+	| 'taupe-l'
+	| 'blue-d'
+	| 'midblue-d'
+	| 'lightblue-d'
+	| 'pink-d'
+	| 'lightpink-d'
+	| 'purple-d'
+	| 'teal-d'
+	| 'red-d'
+	| 'midred-d'
+	| 'green-d'
+	| 'orange-d'
+	| 'grey-d'
+	| 'lightgrey-d'
+	| 'taupe-d';
 
 export type ColourName =
 	| SequentialColourName
@@ -272,41 +295,65 @@ export type ColourName =
 	| BasicColourName;
 
 const basicColours: [BasicColourName, string][] = [
-	['blue-1', '#009de5'],
-	['blue-2', '#1c64b8'],
-	['blue-3', '#00238b'],
-	['blue-4', '#002b66'],
-	['red-1', '#d45f5f'],
-	['green-1', '#2d8289'],
-	['green-2', '#007a51'],
-	['grey-1', '#8495a9'],
-	['grey-4', '#001533'],
-	['orange-1', '#f26d00'],
-	['purple-1', '#6450b3'],
-	['purple-2', '#623980'],
-	['pink-1', '#be6aa5'],
-	['slate-2', '#675e73'],
-	['taupe-2', '#857276'],
-	['aqua-1', '#00a1ba']
+	['blue-l', '#007BC7'],
+	['midblue-l', '#0051AD'],
+	['darkblue-l', '#00297E'],
+	['pink-l', '#A61268'],
+	['purple-l', '#664CB3'],
+	['teal-l', '#006B75'],
+	['red-l', '#CF4452'],
+	['midred-l', '#A6073C'],
+	['darkred-l', '#6B003B'],
+	['green-l', '#687A00'],
+	['orange-l', '#E52A00'],
+	['grey-l', '#6E7787'],
+	['darkgrey-l', '#0D0F12'],
+	['taupe-l', '#80666C'],
+	//---
+	['blue-d', '#0092ED'],
+	['midblue-d', '#47B8FF'],
+	['lightblue-d', '#AFD6FD'],
+	['pink-d', '#BA4A9F'],
+	['lightpink-d', '#E9C4D3'],
+	['purple-d', '#AB96EB'],
+	['teal-d', '#1DB4CB'],
+	['red-d', '#D04351'],
+	['midred-d', '#E88791'],
+	['green-d', '#8FBF77'],
+	['orange-d', '#FF571A'],
+	['grey-d', '#848D9A'],
+	['lightgrey-d', '#F3F5F6'],
+	['taupe-d', '#B29BA0']
 ];
 
 const partyColours: [PartyColourName, string][] = [
-	['ptyred', '#e11f30'],
-	['ptyblue', '#0a52bf'],
-	['ptyblack', '#757575'],
-	['ptygreen', '#007056'],
-	['ptylightgreen', '#51A802'],
-	['ptygold', '#CC8500'],
-	['ptybrown', '#804A40'],
-	['ptylightblue', '#00A1C7'],
-	['ptyaqua', '#005D82'],
-	['ptyorange', '#E5660B'],
-	['ptypurple', '#985EB5']
+	['p-red-l', '#E11F30'],
+	['p-blue-l', '#0A52BF'],
+	['p-black-l', '#757575'],
+	['p-green-l', '#007056'],
+	['p-lightgreen-l', '#51A802'],
+	['p-gold-l', '#CC8500'],
+	['p-brown-l', '#804A40'],
+	['p-lightblue-l', '#00A1C7'],
+	['p-aqua-l', '#005D82'],
+	['p-orange-l', '#E5660B'],
+	['p-purple-l', '#985EB5'],
+	['p-red-d', '#E51D2E'],
+	['p-blue-d', '#166EF3'],
+	['p-black-d', '#757575'],
+	['p-green-d', '#008566'],
+	['p-lightgreen-d', '#51A802'],
+	['p-gold-d', '#E8A830'],
+	['p-brown-d', '#AA6255'],
+	['p-lightblue-d', '#1CBDE3'],
+	['p-aqua-d', '#0080B2'],
+	['p-orange-d', '#F46C0B'],
+	['p-purple-d', '#965EB5']
 ];
 
 const sequentialColours: [SequentialColourName, string][] = [
 	['sd-0-l', '#F2F2F2'],
-	['s-10-l', '#000000'],
+	['so-10-l', '#000000'],
 	['s-blue-1-l', '#C6DBDD'],
 	['s-blue-2-l', '#9CC3CE'],
 	['s-blue-3-l', '#79A9C3'],
@@ -344,7 +391,7 @@ const sequentialColours: [SequentialColourName, string][] = [
 	['s-purple-8-l', '#221B82'],
 	['s-purple-9-l', '#0E1052'],
 	['sd-0-d', '#141414'],
-	['s-10-d', '#FFFFFF'],
+	['so-10-d', '#FFFFFF'],
 	['s-blue-1-d', '#26243E'],
 	['s-blue-2-d', '#303865'],
 	['s-blue-3-d', '#364F8D'],
@@ -505,7 +552,7 @@ const ordinalColours: [OrdinalColourName, string][] = [
 	['o-purple-2-l', '#835BAC'],
 	['o-purple-3-l', '#5230A4'],
 	['o-purple-4-l', '#110785'],
-	['o-5-l', '#000000'],
+	['so-10-l', '#000000'],
 	['o-blue-1-d', '#4D558F'],
 	['o-blue-2-d', '#5782B9'],
 	['o-blue-3-d', '#5DB2DC'],
@@ -522,7 +569,7 @@ const ordinalColours: [OrdinalColourName, string][] = [
 	['o-purple-2-d', '#8C72BC'],
 	['o-purple-3-d', '#C695E2'],
 	['o-purple-4-d', '#FFBDFF'],
-	['o-5-d', '#ffffff']
+	['so-10-d', '#ffffff']
 ];
 
 const namedColours: [ColourName, string][] = [
@@ -534,14 +581,18 @@ const namedColours: [ColourName, string][] = [
 ];
 
 const labelColours: [ColourName, string][] = [
-	['blue-1', '#037cc2'],
-	['red-1', '#ca4d48'],
-	['grey-1', '#68788e'],
-	['orange-1', '#cc4e00'],
-	['ptylightgreen', '#508423'],
-	['ptygold', '#A36A00'],
-	['ptylightblue', '#0E81A0'],
-	['ptyorange', '#BD5800']
+	['p-lightgreen-l', '#508423'],
+	['p-gold-l', '#A36A00'],
+	['p-lightblue-l', '#0E81A0'],
+	['p-orange-l', '#BD5800'],
+	['o-blue-1-l', '#4E7D91'],
+	['o-red-1-l', '#B15E67'],
+	['o-green-1-l', '#597E75'],
+	['o-purple-1-l', '#8A6C96'],
+	['o-blue-1-d', '#6B70A7'],
+	['o-red-1-d', '#956682'],
+	['o-green-1-d', '#5E759C'],
+	['o-purple-1-d', '#6C719F']
 ];
 
 const namedColoursMap: Map<ColourName, string> = new Map(namedColours);
