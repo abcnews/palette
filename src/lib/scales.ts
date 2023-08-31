@@ -11,16 +11,16 @@ const isTriple = (tupple: number[]): tupple is [number, number, number] => tuppl
 
 /**
  * A convenience wrapper around d3's `scaleDiverging` and `scaleSequential` for creating
- * scales with {@link getDivergentContinuousPaletteInterpolator | diverging} or 
- * {@link getSequentialContinuousPaletteInterpolator | sequential} palettes and a supplied domain. 
+ * scales with {@link getDivergentContinuousPaletteInterpolator | diverging} or
+ * {@link getSequentialContinuousPaletteInterpolator | sequential} palettes and a supplied domain.
  * For a sequential scale, the domain will usually be the minimum and maximum values in the input
  * data. For diverging scales, the domain will usually be minimum, neutral, maximum values in the
  * input data.
- * 
+ *
  * @param palette The colour and type of palette for which to generate a scale function
  * @param mode The page colour mode (light/dark) the generated scale function should be suitable for
- * @param domain The domain used by the scale function.
- * 
+ * @param domain The domain used by the scale function. Sequential palettes must have a domain of length two and divergent palettes must be three.
+ *
  * @see [d3 diverging scales](https://observablehq.com/@d3/diverging-scales)
  * @see [d3 sequential scales](https://observablehq.com/@d3/sequential-scales)
  * @group Sequential Palettes

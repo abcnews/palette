@@ -12,33 +12,39 @@
 - [getOrdinalCategoricalPalette](README.md#getordinalcategoricalpalette)
 - [getPoliticalPalette](README.md#getpoliticalpalette)
 - [getSentimentPalette](README.md#getsentimentpalette)
-- [OrdinalPalette](enums/OrdinalPalette.md)
 
 ### Divergent Palettes
 
 - [createContinuousScale](README.md#createcontinuousscale)
 - [getDivergentContinuousPaletteInterpolator](README.md#getdivergentcontinuouspaletteinterpolator)
 - [getDivergentSteppedPalette](README.md#getdivergentsteppedpalette)
-- [DivergentPalette](README.md#divergentpalette-1)
 
 ### Sequential Palettes
 
 - [createContinuousScale](README.md#createcontinuousscale)
 - [getSequentialContinuousPaletteInterpolator](README.md#getsequentialcontinuouspaletteinterpolator)
 - [getSequentialSteppedPalette](README.md#getsequentialsteppedpalette)
-- [SequentialPalette](enums/SequentialPalette.md)
 
 ### Enumerations
 
 - [ColourMode](enums/ColourMode.md)
+- [OrdinalPalette](enums/OrdinalPalette.md)
+- [SequentialPalette](enums/SequentialPalette.md)
 
 ### Type Aliases
 
 - [ColourWithUsage](README.md#colourwithusage)
 - [DivergentPalette](README.md#divergentpalette)
+- [DivergentPaletteOptions](README.md#divergentpaletteoptions)
+- [PoliticalColour](README.md#politicalcolour)
 - [PurpleGreen](README.md#purplegreen)
 - [RedBlue](README.md#redblue)
 - [RedViolet](README.md#redviolet)
+- [SentimentPalette](README.md#sentimentpalette)
+
+### Variables
+
+- [DivergentPalette](README.md#divergentpalette-1)
 
 ## Categorical Palettes
 
@@ -134,7 +140,7 @@ ___
 
 ### getPoliticalPalette
 
-▸ **getPoliticalPalette**(`mode?`): `Map`<`PoliticalColour`, [`ColourWithUsage`](README.md#colourwithusage)\>
+▸ **getPoliticalPalette**(`mode?`): `Map`<[`PoliticalColour`](README.md#politicalcolour), [`ColourWithUsage`](README.md#colourwithusage)\>
 
 Get a colour palette suitable for visualising political parties.
 
@@ -146,7 +152,7 @@ Get a colour palette suitable for visualising political parties.
 
 #### Returns
 
-`Map`<`PoliticalColour`, [`ColourWithUsage`](README.md#colourwithusage)\>
+`Map`<[`PoliticalColour`](README.md#politicalcolour), [`ColourWithUsage`](README.md#colourwithusage)\>
 
 A `Map` of political colour names to hex colour and usage strings
 
@@ -154,7 +160,7 @@ ___
 
 ### getSentimentPalette
 
-▸ **getSentimentPalette**(`n`, `mode?`): `SentimentPalette`
+▸ **getSentimentPalette**(`n`, `mode?`): [`SentimentPalette`](README.md#sentimentpalette)
 
 Get a colour palette suitable for visualising sentiment
 
@@ -167,15 +173,9 @@ Get a colour palette suitable for visualising sentiment
 
 #### Returns
 
-`SentimentPalette`
+[`SentimentPalette`](README.md#sentimentpalette)
 
 An object defining a colour palette suitable for visualising sentiment
-
-___
-
-• **OrdinalPalette**: `Object`
-
-Ordinal palette base colours
 
 ## Divergent Palettes
 
@@ -184,8 +184,8 @@ Ordinal palette base colours
 ▸ **createContinuousScale**(`palette`, `mode`, `domain`): `ScaleDiverging`<`string`, `never`\> \| `ScaleSequential`<`string`, `never`\>
 
 A convenience wrapper around d3's `scaleDiverging` and `scaleSequential` for creating
-scales with [diverging](README.md#getdivergentcontinuouspaletteinterpolator) or 
-[sequential](README.md#getsequentialcontinuouspaletteinterpolator) palettes and a supplied domain. 
+scales with [diverging](README.md#getdivergentcontinuouspaletteinterpolator) or
+[sequential](README.md#getsequentialcontinuouspaletteinterpolator) palettes and a supplied domain.
 For a sequential scale, the domain will usually be the minimum and maximum values in the input
 data. For diverging scales, the domain will usually be minimum, neutral, maximum values in the
 input data.
@@ -196,7 +196,7 @@ input data.
 | :------ | :------ | :------ |
 | `palette` | [`DivergentPalette`](README.md#divergentpalette-1) \| [`SequentialPalette`](enums/SequentialPalette.md) | The colour and type of palette for which to generate a scale function |
 | `mode` | [`ColourMode`](enums/ColourMode.md) | The page colour mode (light/dark) the generated scale function should be suitable for |
-| `domain` | [`number`, `number`] \| [`number`, `number`, `number`] | The domain used by the scale function. |
+| `domain` | [`number`, `number`] \| [`number`, `number`, `number`] | The domain used by the scale function. Sequential palettes must have a domain of length two and divergent palettes must be three. |
 
 #### Returns
 
@@ -265,18 +265,7 @@ Get an array of colours that define a divergent stepped palette with the given p
 
 `string`[]
 
-An array of colour strings in `rgb(x,y,z)` format
-
-___
-
-### DivergentPalette
-
-• **DivergentPalette**: `DivergentPaletteOptions`
-
-A map of divergent palette colour combination names to values
-
-This is implemented as an object rather than an enum because having tuples makes
-type safety easier.
+An array of `steps * 2 + 1` colour strings in `rgb(x,y,z)` format. The middle colour should represent the neutral value.
 
 ## Sequential Palettes
 
@@ -285,8 +274,8 @@ type safety easier.
 ▸ **createContinuousScale**(`palette`, `mode`, `domain`): `ScaleDiverging`<`string`, `never`\> \| `ScaleSequential`<`string`, `never`\>
 
 A convenience wrapper around d3's `scaleDiverging` and `scaleSequential` for creating
-scales with [diverging](README.md#getdivergentcontinuouspaletteinterpolator) or 
-[sequential](README.md#getsequentialcontinuouspaletteinterpolator) palettes and a supplied domain. 
+scales with [diverging](README.md#getdivergentcontinuouspaletteinterpolator) or
+[sequential](README.md#getsequentialcontinuouspaletteinterpolator) palettes and a supplied domain.
 For a sequential scale, the domain will usually be the minimum and maximum values in the input
 data. For diverging scales, the domain will usually be minimum, neutral, maximum values in the
 input data.
@@ -297,7 +286,7 @@ input data.
 | :------ | :------ | :------ |
 | `palette` | [`DivergentPalette`](README.md#divergentpalette-1) \| [`SequentialPalette`](enums/SequentialPalette.md) | The colour and type of palette for which to generate a scale function |
 | `mode` | [`ColourMode`](enums/ColourMode.md) | The page colour mode (light/dark) the generated scale function should be suitable for |
-| `domain` | [`number`, `number`] \| [`number`, `number`, `number`] | The domain used by the scale function. |
+| `domain` | [`number`, `number`] \| [`number`, `number`, `number`] | The domain used by the scale function. Sequential palettes must have a domain of length two and divergent palettes must be three. |
 
 #### Returns
 
@@ -366,13 +355,7 @@ Get an array of colours that define a sequential stepped palette with the given 
 
 `string`[]
 
-An array of colour strings in `rgb(x,y,z)` format
-
-___
-
-• **SequentialPalette**: `Object`
-
-Sequential palette base colours
+An array of `steps + 1` colour strings in `rgb(x,y,z)` format. The first colour should be used to represent the zero value.
 
 ## Type Aliases
 
@@ -400,6 +383,30 @@ Valid divergent palette options. These can be accessed at runtime using the asso
 
 ___
 
+### DivergentPaletteOptions
+
+Ƭ **DivergentPaletteOptions**: `Object`
+
+A type representing a map of divergent palette names to values
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `PurpleGreen` | [`PurpleGreen`](README.md#purplegreen) |
+| `RedBlue` | [`RedBlue`](README.md#redblue) |
+| `RedViolet` | [`RedViolet`](README.md#redviolet) |
+
+___
+
+### PoliticalColour
+
+Ƭ **PoliticalColour**: ``"red"`` \| ``"blue"`` \| ``"black"`` \| ``"green"`` \| ``"lightgreen"`` \| ``"gold"`` \| ``"brown"`` \| ``"lightblue"`` \| ``"aqua"`` \| ``"orange"`` \| ``"purple"``
+
+Valid political colour options. A mapping of political colours to usage is returned by [getPoliticalPalette](README.md#getpoliticalpalette).
+
+___
+
 ### PurpleGreen
 
 Ƭ **PurpleGreen**: [``"purple"``, ``"green"``]
@@ -421,3 +428,31 @@ ___
 Ƭ **RedViolet**: [``"red"``, ``"violet"``]
 
 A purple/red divergent palette combination
+
+___
+
+### SentimentPalette
+
+Ƭ **SentimentPalette**: `Object`
+
+Shape of returned object from [getSentimentPalette](README.md#getsentimentpalette)
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `na` | `string` |
+| `negative` | `string`[] |
+| `neutral` | `string` |
+| `positive` | `string`[] |
+
+## Variables
+
+### DivergentPalette
+
+• **DivergentPalette**: [`DivergentPaletteOptions`](README.md#divergentpaletteoptions)
+
+A map of divergent palette colour combination names to values
+
+This is implemented as an object rather than an enum because having tuples makes
+type safety easier.

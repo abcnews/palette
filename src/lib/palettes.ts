@@ -17,7 +17,6 @@ export enum ColourMode {
 
 /**
  * Sequential palette base colours
- * @group Sequential Palettes
  */
 export enum SequentialPalette {
 	Blue = 'blue',
@@ -28,8 +27,6 @@ export enum SequentialPalette {
 
 /**
  * Ordinal palette base colours
- *
- * @group Categorical Palettes
  */
 export enum OrdinalPalette {
 	Blue = 'blue',
@@ -47,8 +44,11 @@ export type PurpleGreen = ['purple', 'green'];
 /** A purple/red divergent palette combination */
 export type RedViolet = ['red', 'violet'];
 
-/** A type representing a map of divergent palette names to values */
-type DivergentPaletteOptions = {
+/**
+ * A type representing a map of divergent palette names to values
+ 
+ */
+export type DivergentPaletteOptions = {
 	RedBlue: RedBlue;
 	PurpleGreen: PurpleGreen;
 	RedViolet: RedViolet;
@@ -65,8 +65,6 @@ export type DivergentPalette = RedBlue | PurpleGreen | RedViolet;
  *
  * This is implemented as an object rather than an enum because having tuples makes
  * type safety easier.
- *
- * @group Divergent Palettes
  */
 export const DivergentPalette: DivergentPaletteOptions = {
 	RedBlue: ['red', 'blue'],
@@ -160,7 +158,10 @@ export const getGenderPalette = (
 	};
 };
 
-type SentimentPalette = {
+/**
+ * Shape of returned object from {@link getSentimentPalette}
+ */
+export type SentimentPalette = {
 	negative: string[];
 	neutral: string;
 	positive: string[];
@@ -217,7 +218,7 @@ export const getSentimentPalette = (
 /**
  * Valid political colour options. A mapping of political colours to usage is returned by {@link getPoliticalPalette}.
  */
-type PoliticalColour =
+export type PoliticalColour =
 	| 'red'
 	| 'blue'
 	| 'black'
