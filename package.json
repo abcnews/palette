@@ -12,7 +12,7 @@
 		"lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. .",
 		"format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
 		"release": "np",
-		"version": "npm run package",
+		"version": "npm run package && npm run generate-docs && git add docs",
 		"generate-docs": "typedoc"
 	},
 	"engines": {
