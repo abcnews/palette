@@ -1,6 +1,6 @@
 {
 	"name": "@abcnews/palette",
-	"version": "1.0.0-3",
+	"version": "1.0.0-4",
 	"scripts": {
 		"dev": "vite dev & svelte-package --watch",
 		"build": "vite build",
