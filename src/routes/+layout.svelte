@@ -1,5 +1,12 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import { theme } from '$lib/stores.js';
+	if (browser) {
+		theme.set((window.localStorage.getItem('theme') as Theme) || 'system');
+		theme.subscribe((d) => {
+			window.localStorage.setItem('theme', d);
+		});
+	}
 </script>
 
 <svelte:head>

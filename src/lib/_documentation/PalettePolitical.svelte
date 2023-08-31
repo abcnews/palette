@@ -1,6 +1,7 @@
 <script lang="ts">
-	import SwatchTable from '$lib/_documentation/SwatchTable.svelte';
-	import { getPoliticalPalette } from '$lib/palettes.js';
+	import SwatchTableX from '$lib/_documentation/SwatchTableX.svelte';
+	import { ColourMode, getPoliticalPalette } from '$lib/palettes.js';
+	export let mode: ColourMode;
 </script>
 
-<SwatchTable palette={Object.entries(getPoliticalPalette()).map(([name, colour]) => colour)} />
+<SwatchTableX palette={Object.entries(getPoliticalPalette(mode)).map(([name, colour]) => colour)} />

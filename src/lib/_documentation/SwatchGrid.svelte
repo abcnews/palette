@@ -1,11 +1,9 @@
 <script lang="ts">
 	import { getColourName, getLabelColour } from '$lib/colours.js';
-	import { getEmphasisColours } from '$lib/palettes.js';
+
 	import Swatch from '$lib/_documentation/Swatch.svelte';
 	import SwatchColourLabel from '$lib/_documentation/SwatchColourLabel.svelte';
 	export let palette: string[];
-	export let showEmphasisColours: boolean = false;
-	const { emphasise, deemphasise } = getEmphasisColours();
 </script>
 
 <table>
@@ -55,41 +53,6 @@
 				{/if}
 			</tr>
 		{/each}
-		{#if showEmphasisColours}
-			<tr><th colspan={9}>De-emphasis and Emphasis </th></tr>
-			<tr>
-				<th><SwatchColourLabel name={getColourName(emphasise)} hex={emphasise} /> </th>
-				{#each palette as _}
-					<td><Swatch colour={emphasise} /></td>
-				{/each}
-				<td />
-				{#if getLabelColour(getColourName(emphasise)) !== emphasise}
-					<td><Swatch colour={getLabelColour(getColourName(emphasise))} /></td>
-					<td class="suplimentary"
-						><SwatchColourLabel
-							name={getColourName(emphasise) + ' label'}
-							hex={getLabelColour(getColourName(emphasise))}
-						/></td
-					>
-				{/if}
-			</tr>
-			<tr>
-				<th><SwatchColourLabel name={getColourName(deemphasise)} hex={deemphasise} /> </th>
-				{#each palette as _}
-					<td><Swatch colour={deemphasise} /></td>
-				{/each}
-				<td />
-				{#if getLabelColour(getColourName(deemphasise)) !== deemphasise}
-					<td><Swatch colour={getLabelColour(getColourName(deemphasise))} /></td>
-					<td class="suplimentary"
-						><SwatchColourLabel
-							name={getColourName(deemphasise) + ' label'}
-							hex={getLabelColour(getColourName(deemphasise))}
-						/></td
-					>
-				{/if}
-			</tr>
-		{/if}
 	</tbody>
 </table>
 

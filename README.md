@@ -18,49 +18,11 @@ Colour palettes are available for visualising various types of data, including:
 
 # Javascript API
 
-This describes the functions and objects available in the module and how to use them for generating or importing colour palettes.
+Detailed API documentation is in [docs/README.md](./docs/README.md).
 
-## Generic categorical palettes
+## Categorical palettes
 
-### Nominal
-
-Returns an array of hex colour strings for use in visualising nominal (non-ordinal) categorical data for the given number of categories.
-
-`getNominalCategoricalPalette: (n: number) => string[]`
-
-Emphasis and de-emphasis colours can be used for palettes where there are up to four categories.
-
-`getEmphasisColours: () => {emphasise: string, deemphasise: string}`
-
-### Ordinal
-
-Returns an array of hex colour strings for use in visualising ordinal categorical data for the given number of categories.
-
-`getOrdinalCategoricalPalette: (n: number, variant: 'blue'|'red'|'green'|'purple' = 'blue') => string[]`
-
-## Named categorical palettes
-
-A generic function for accessing the palettes described below.
-
-`getNamedCategoricalPalette: (name: 'gender'|'sentiment'|'political') => GenderPalette | SentimentPalette | PoliticalPalette`
-
-### Gender
-
-Returns a palette for use when visualising gender categories.
-
-`getGenderPalette: () => GenderPalette`
-
-### Sentiment
-
-Returns a palette for use when visualising sentiment.
-
-`getSentimentPalette: () => SentimentPalette`
-
-### Political
-
-Returns a palette for use when visualising political parties.
-
-`getPoliticalPalette: () => PoliticalPalette`
+In general, categorical palettes generators return either an array of colour values to use in the given order or an array of colour values with an associated description of appropriate usage.
 
 ## Sequential and divergent palettes
 
@@ -72,45 +34,11 @@ These are suited for use with a scale function where an input domain appropriate
 
 An easy way to use these is with d3's [sequential](https://github.com/d3/d3-scale/blob/main/README.md#sequential-scales) and [diverging](https://github.com/d3/d3-scale/blob/main/README.md#diverging-scales) scale functions. Unlike most of d3's scale functions these take an interpolation function in place of a range.
 
-```js
-const scale = d3
-	.scaleSequential(getSequentialContinuousPaletteInterpolator('blue'))
-	.domain([0, 100]);
-```
-
-### Sequential
-
-#### Continuous
-
-Returns a continuous scale function for generating colours for an input value. Functions expect a value between 0 and 1.
-
-`getSequentialContinuousPaletteInterpolator: (variant: 'blue'|'red'|'green'|'purple' = 'blue') => (value: number) => string`
-
-#### Stepped
-
-Returns an array of `steps + 1` colours.
-
-`getSequentialSteppedPalette: (steps: number, variant: 'blue'|'red'|'green'|'purple' = 'blue') => string[]`
-
-### Divergent
-
-#### Continuous
-
-Returns a continuous scale function for generating colours for an input value. Functions expect a value between 0 and 1.
-
-`getDivergentContinuousPaletteInterpolator: (variant: 'rb'|'gp'|'pr' = 'rb') => (value: number) => string`
-
-#### Stepped
-
-Returns an array of `steps * 2 + 1` colours.
-
-`getDivergentSteppedPalette: (steps: number, variant: 'rb'|'gp'|'pr' = 'rb') => string[]`
+Stepped palette generators return an array of string colour values.
 
 # Development
 
-This is a sveltekit project. The `npm run dev` will launch a development server with live reload. This is the easiest way to work on the project.
-
-This site is also intended to be built and published as documentation for the library and the ABC News colour palettes in general.
+This is a [SvelteKit](https://kit.svelte.dev/) project. The `npm run dev` will launch a development server with live reload. The development server will serve a site that renders example uses of all the palette generators defined in the package. This is the easiest way to work on the project.
 
 ## Publication
 
