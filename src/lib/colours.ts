@@ -624,7 +624,7 @@ export const getLabelColour = (hex: string): string => {
  * @group Utilities
  */
 export const getColourName = (hex: string): ColourName | undefined =>
-	namedColours.find(([_, colour]) => colour === hex)?.[0];
+	namedColours.find(([_, colour]) => colour.toLowerCase() === hex.toLowerCase())?.[0];
 
 /**
  * Get an RGB hex colour string for a named colour.
