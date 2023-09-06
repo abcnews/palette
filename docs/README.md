@@ -46,6 +46,12 @@
 
 - [DivergentPalette](README.md#divergentpalette-1)
 
+### Utilities
+
+- [getColourName](README.md#getcolourname)
+- [getLabelColour](README.md#getlabelcolour)
+- [getNamedColour](README.md#getnamedcolour)
+
 ## Categorical Palettes
 
 ### getDefaultCategoricalPalette
@@ -456,3 +462,73 @@ A map of divergent palette colour combination names to values
 
 This is implemented as an object rather than an enum because having tuples makes
 type safety easier.
+
+## Utilities
+
+### getColourName
+
+▸ **getColourName**(`hex`): `undefined` \| `ColourName`
+
+Get a colour's name.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `hex` | `string` | An RGB colour in hex format |
+
+#### Returns
+
+`undefined` \| `ColourName`
+
+A colour name string if there's a defined name for the passed hex code
+
+___
+
+### getLabelColour
+
+▸ **getLabelColour**(`hex`): `string`
+
+Get a colour suitable for use as a text label for a given colour.
+
+Some colours in the palette are not suitable for use as text colours
+because acceptable colour contrast ratios are different for text than
+for other visualisation elements. When using colour palettes generated
+by this library, use this function to ensure you've to an appropriate
+colour for text labels.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `hex` | `string` | An RGB color value in hex format |
+
+#### Returns
+
+`string`
+
+An RGB colour value in hex format
+
+___
+
+### getNamedColour
+
+▸ **getNamedColour**(`name`): `string`
+
+Get an RGB hex colour string for a named colour.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `name` | `ColourName` | A colour name for which to return the RGB hex colour string. |
+
+#### Returns
+
+`string`
+
+A hex colour string
+
+**`Throws`**
+
+An `Error` if the `name` passed in isn't a valid `ColourName`

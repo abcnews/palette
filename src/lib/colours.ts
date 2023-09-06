@@ -598,10 +598,46 @@ const labelColours: [ColourName, string][] = [
 const namedColoursMap: Map<ColourName, string> = new Map(namedColours);
 const labelColoursMap: Map<ColourName, string> = new Map(labelColours);
 
-export const getLabelColour = (colour: ColourName): string =>
-	labelColoursMap.get(colour) || namedColoursMap.get(colour);
+/**
+ * Get a colour suitable for use as a text label for a given colour.
+ *
+ * Some colours in the palette are not suitable for use as text colours
+ * because acceptable colour contrast ratios are different for text than
+ * for other visualisation elements. When using colour palettes generated
+ * by this library, use this function to ensure you've to an appropriate
+ * colour for text labels.
+ *
+ * @param hex An RGB color value in hex format
+ * @returns An RGB colour value in hex format
+ * @group Utilities
+ */
+export const getLabelColour = (hex: string): string => {
+	const name = getColourName(hex);
+	return name ? labelColoursMap.get(name) || hex : hex;
+};
 
-export const getColourName = (hex: string): ColourName =>
-	namedColours.find(([_, colour]) => colour === hex)[0];
+/**
+ * Get a colour's name.
+ *
+ * @param hex An RGB colour in hex format
+ * @returns A colour name string if there's a defined name for the passed hex code
+ * @group Utilities
+ */
+export const getColourName = (hex: string): ColourName | undefined =>
+	namedColours.find(([_, colour]) => colour === hex)?.[0];
 
-export const getNamedColour = (name: ColourName): string => namedColoursMap.get(name);
+/**
+ * Get an RGB hex colour string for a named colour.
+ *
+ * @param name A colour name for which to return the RGB hex colour string.
+ * @returns A hex colour string
+ * @throws An `Error` if the `name` passed in isn't a valid `ColourName`
+ * @group Utilities
+ */
+export const getNamedColour = (name: ColourName): string => {
+	const colour = namedColoursMap.get(name);
+	if (typeof colour === 'undefined') {
+		throw new Error(`The colour ${name} is not defined.`);
+	}
+	return colour;
+};
