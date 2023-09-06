@@ -140,7 +140,11 @@ Get an ordinal categorical palette with the given params.
 
 `string`[]
 
-An array of colour strings in `rgb(x,y,z)` format
+An array of colour strings in hex format
+
+**`Throws`**
+
+An error if an interpolated colour can't be converted to hex format
 
 ___
 
@@ -271,7 +275,11 @@ Get an array of colours that define a divergent stepped palette with the given p
 
 `string`[]
 
-An array of `steps * 2 + 1` colour strings in `rgb(x,y,z)` format. The middle colour should represent the neutral value.
+An array of `steps * 2 + 1` colour strings in hex format. The middle colour should represent the neutral value.
+
+**`Throws`**
+
+An error if an interpolated colour can't be converted to hex format
 
 ## Sequential Palettes
 
@@ -361,7 +369,11 @@ Get an array of colours that define a sequential stepped palette with the given 
 
 `string`[]
 
-An array of `steps + 1` colour strings in `rgb(x,y,z)` format. The first colour should be used to represent the zero value.
+An array of `steps + 1` colour strings in hex format. The first colour should be used to represent the zero value.
+
+**`Throws`**
+
+An error if any of the interpolated colours can't be converted to hex format.
 
 ## Type Aliases
 
