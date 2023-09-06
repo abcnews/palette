@@ -25,6 +25,12 @@
 - [getSequentialContinuousPaletteInterpolator](README.md#getsequentialcontinuouspaletteinterpolator)
 - [getSequentialSteppedPalette](README.md#getsequentialsteppedpalette)
 
+### Utilities
+
+- [getColourName](README.md#getcolourname)
+- [getLabelColour](README.md#getlabelcolour)
+- [getNamedColour](README.md#getnamedcolour)
+
 ### Enumerations
 
 - [ColourMode](enums/ColourMode.md)
@@ -33,24 +39,24 @@
 
 ### Type Aliases
 
+- [BasicColourName](README.md#basiccolourname)
+- [ColourName](README.md#colourname)
 - [ColourWithUsage](README.md#colourwithusage)
+- [DivergentColourName](README.md#divergentcolourname)
 - [DivergentPalette](README.md#divergentpalette)
 - [DivergentPaletteOptions](README.md#divergentpaletteoptions)
+- [OrdinalColourName](README.md#ordinalcolourname)
+- [PartyColourName](README.md#partycolourname)
 - [PoliticalColour](README.md#politicalcolour)
 - [PurpleGreen](README.md#purplegreen)
 - [RedBlue](README.md#redblue)
 - [RedViolet](README.md#redviolet)
 - [SentimentPalette](README.md#sentimentpalette)
+- [SequentialColourName](README.md#sequentialcolourname)
 
 ### Variables
 
 - [DivergentPalette](README.md#divergentpalette-1)
-
-### Utilities
-
-- [getColourName](README.md#getcolourname)
-- [getLabelColour](README.md#getlabelcolour)
-- [getNamedColour](README.md#getnamedcolour)
 
 ## Categorical Palettes
 
@@ -375,7 +381,94 @@ An array of `steps + 1` colour strings in hex format. The first colour should be
 
 An error if any of the interpolated colours can't be converted to hex format.
 
+## Utilities
+
+### getColourName
+
+▸ **getColourName**(`hex`): `undefined` \| [`ColourName`](README.md#colourname)
+
+Get a colour's name.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `hex` | `string` | An RGB colour in hex format |
+
+#### Returns
+
+`undefined` \| [`ColourName`](README.md#colourname)
+
+A colour name string if there's a defined name for the passed hex code
+
+___
+
+### getLabelColour
+
+▸ **getLabelColour**(`hex`): `string`
+
+Get a colour suitable for use as a text label for a given colour.
+
+Some colours in the palette are not suitable for use as text colours
+because acceptable colour contrast ratios are different for text than
+for other visualisation elements. When using colour palettes generated
+by this library, use this function to ensure you've to an appropriate
+colour for text labels.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `hex` | `string` | An RGB color value in hex format |
+
+#### Returns
+
+`string`
+
+An RGB colour value in hex format
+
+___
+
+### getNamedColour
+
+▸ **getNamedColour**(`name`): `string`
+
+Get an RGB hex colour string for a named colour.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `name` | [`ColourName`](README.md#colourname) | A colour name for which to return the RGB hex colour string. |
+
+#### Returns
+
+`string`
+
+A hex colour string
+
+**`Throws`**
+
+An `Error` if the `name` passed in isn't a valid `ColourName`
+
 ## Type Aliases
+
+### BasicColourName
+
+Ƭ **BasicColourName**: ``"blue-l"`` \| ``"midblue-l"`` \| ``"darkblue-l"`` \| ``"pink-l"`` \| ``"purple-l"`` \| ``"teal-l"`` \| ``"red-l"`` \| ``"midred-l"`` \| ``"darkred-l"`` \| ``"green-l"`` \| ``"orange-l"`` \| ``"grey-l"`` \| ``"darkgrey-l"`` \| ``"taupe-l"`` \| ``"blue-d"`` \| ``"midblue-d"`` \| ``"lightblue-d"`` \| ``"pink-d"`` \| ``"lightpink-d"`` \| ``"purple-d"`` \| ``"teal-d"`` \| ``"red-d"`` \| ``"midred-d"`` \| ``"green-d"`` \| ``"orange-d"`` \| ``"grey-d"`` \| ``"lightgrey-d"`` \| ``"taupe-d"``
+
+Valid basic colour names
+
+___
+
+### ColourName
+
+Ƭ **ColourName**: [`SequentialColourName`](README.md#sequentialcolourname) \| [`DivergentColourName`](README.md#divergentcolourname) \| [`OrdinalColourName`](README.md#ordinalcolourname) \| [`PartyColourName`](README.md#partycolourname) \| [`BasicColourName`](README.md#basiccolourname)
+
+All valid colour names used in palettes.
+*Note:* not all colours generated/exported by this library are named.
+
+___
 
 ### ColourWithUsage
 
@@ -390,6 +483,14 @@ of its meaning in a given context.
 | :------ | :------ |
 | `colour` | `string` |
 | `usage` | `string` |
+
+___
+
+### DivergentColourName
+
+Ƭ **DivergentColourName**: ``"sd-0-l"`` \| ``"d-red-1-l"`` \| ``"d-red-2-l"`` \| ``"d-red-3-l"`` \| ``"d-red-4-l"`` \| ``"d-red-5-l"`` \| ``"d-red-6-l"`` \| ``"d-red-7-l"`` \| ``"d-red-8-l"`` \| ``"d-red-9-l"`` \| ``"d-red-10-l"`` \| ``"d-blue-1-l"`` \| ``"d-blue-2-l"`` \| ``"d-blue-3-l"`` \| ``"d-blue-4-l"`` \| ``"d-blue-5-l"`` \| ``"d-blue-6-l"`` \| ``"d-blue-7-l"`` \| ``"d-blue-8-l"`` \| ``"d-blue-9-l"`` \| ``"d-blue-10-l"`` \| ``"d-purple-1-l"`` \| ``"d-purple-2-l"`` \| ``"d-purple-3-l"`` \| ``"d-purple-4-l"`` \| ``"d-purple-5-l"`` \| ``"d-purple-6-l"`` \| ``"d-purple-7-l"`` \| ``"d-purple-8-l"`` \| ``"d-purple-9-l"`` \| ``"d-purple-10-l"`` \| ``"d-violet-1-l"`` \| ``"d-violet-2-l"`` \| ``"d-violet-3-l"`` \| ``"d-violet-4-l"`` \| ``"d-violet-5-l"`` \| ``"d-violet-6-l"`` \| ``"d-violet-7-l"`` \| ``"d-violet-8-l"`` \| ``"d-violet-9-l"`` \| ``"d-violet-10-l"`` \| ``"d-green-1-l"`` \| ``"d-green-2-l"`` \| ``"d-green-3-l"`` \| ``"d-green-4-l"`` \| ``"d-green-5-l"`` \| ``"d-green-6-l"`` \| ``"d-green-7-l"`` \| ``"d-green-8-l"`` \| ``"d-green-9-l"`` \| ``"d-green-10-l"`` \| ``"sd-0-d"`` \| ``"d-red-1-d"`` \| ``"d-red-2-d"`` \| ``"d-red-3-d"`` \| ``"d-red-4-d"`` \| ``"d-red-5-d"`` \| ``"d-red-6-d"`` \| ``"d-red-7-d"`` \| ``"d-red-8-d"`` \| ``"d-red-9-d"`` \| ``"d-red-10-d"`` \| ``"d-blue-1-d"`` \| ``"d-blue-2-d"`` \| ``"d-blue-3-d"`` \| ``"d-blue-4-d"`` \| ``"d-blue-5-d"`` \| ``"d-blue-6-d"`` \| ``"d-blue-7-d"`` \| ``"d-blue-8-d"`` \| ``"d-blue-9-d"`` \| ``"d-blue-10-d"`` \| ``"d-purple-1-d"`` \| ``"d-purple-2-d"`` \| ``"d-purple-3-d"`` \| ``"d-purple-4-d"`` \| ``"d-purple-5-d"`` \| ``"d-purple-6-d"`` \| ``"d-purple-7-d"`` \| ``"d-purple-8-d"`` \| ``"d-purple-9-d"`` \| ``"d-purple-10-d"`` \| ``"d-violet-1-d"`` \| ``"d-violet-2-d"`` \| ``"d-violet-3-d"`` \| ``"d-violet-4-d"`` \| ``"d-violet-5-d"`` \| ``"d-violet-6-d"`` \| ``"d-violet-7-d"`` \| ``"d-violet-8-d"`` \| ``"d-violet-9-d"`` \| ``"d-violet-10-d"`` \| ``"d-green-1-d"`` \| ``"d-green-2-d"`` \| ``"d-green-3-d"`` \| ``"d-green-4-d"`` \| ``"d-green-5-d"`` \| ``"d-green-6-d"`` \| ``"d-green-7-d"`` \| ``"d-green-8-d"`` \| ``"d-green-9-d"`` \| ``"d-green-10-d"``
+
+Valid divergent palette colour names
 
 ___
 
@@ -414,6 +515,22 @@ A type representing a map of divergent palette names to values
 | `PurpleGreen` | [`PurpleGreen`](README.md#purplegreen) |
 | `RedBlue` | [`RedBlue`](README.md#redblue) |
 | `RedViolet` | [`RedViolet`](README.md#redviolet) |
+
+___
+
+### OrdinalColourName
+
+Ƭ **OrdinalColourName**: ``"o-blue-1-l"`` \| ``"o-blue-2-l"`` \| ``"o-blue-3-l"`` \| ``"o-blue-4-l"`` \| ``"o-red-1-l"`` \| ``"o-red-2-l"`` \| ``"o-red-3-l"`` \| ``"o-red-4-l"`` \| ``"o-green-1-l"`` \| ``"o-green-2-l"`` \| ``"o-green-3-l"`` \| ``"o-green-4-l"`` \| ``"o-purple-1-l"`` \| ``"o-purple-2-l"`` \| ``"o-purple-3-l"`` \| ``"o-purple-4-l"`` \| ``"so-10-l"`` \| ``"o-blue-1-d"`` \| ``"o-blue-2-d"`` \| ``"o-blue-3-d"`` \| ``"o-blue-4-d"`` \| ``"o-red-1-d"`` \| ``"o-red-2-d"`` \| ``"o-red-3-d"`` \| ``"o-red-4-d"`` \| ``"o-green-1-d"`` \| ``"o-green-2-d"`` \| ``"o-green-3-d"`` \| ``"o-green-4-d"`` \| ``"o-purple-1-d"`` \| ``"o-purple-2-d"`` \| ``"o-purple-3-d"`` \| ``"o-purple-4-d"`` \| ``"so-10-d"``
+
+Valid ordinal palette colour names
+
+___
+
+### PartyColourName
+
+Ƭ **PartyColourName**: ``"p-red-l"`` \| ``"p-blue-l"`` \| ``"p-black-l"`` \| ``"p-green-l"`` \| ``"p-lightgreen-l"`` \| ``"p-gold-l"`` \| ``"p-brown-l"`` \| ``"p-lightblue-l"`` \| ``"p-aqua-l"`` \| ``"p-orange-l"`` \| ``"p-purple-l"`` \| ``"p-red-d"`` \| ``"p-blue-d"`` \| ``"p-black-d"`` \| ``"p-green-d"`` \| ``"p-lightgreen-d"`` \| ``"p-gold-d"`` \| ``"p-brown-d"`` \| ``"p-lightblue-d"`` \| ``"p-aqua-d"`` \| ``"p-orange-d"`` \| ``"p-purple-d"``
+
+Valid political colour names
 
 ___
 
@@ -464,6 +581,14 @@ Shape of returned object from [getSentimentPalette](README.md#getsentimentpalett
 | `neutral` | `string` |
 | `positive` | `string`[] |
 
+___
+
+### SequentialColourName
+
+Ƭ **SequentialColourName**: ``"sd-0-l"`` \| ``"so-10-l"`` \| ``"sd-0-d"`` \| ``"so-10-d"`` \| ``"s-blue-1-l"`` \| ``"s-blue-2-l"`` \| ``"s-blue-3-l"`` \| ``"s-blue-4-l"`` \| ``"s-blue-5-l"`` \| ``"s-blue-6-l"`` \| ``"s-blue-7-l"`` \| ``"s-blue-8-l"`` \| ``"s-blue-9-l"`` \| ``"s-red-1-l"`` \| ``"s-red-2-l"`` \| ``"s-red-3-l"`` \| ``"s-red-4-l"`` \| ``"s-red-5-l"`` \| ``"s-red-6-l"`` \| ``"s-red-7-l"`` \| ``"s-red-8-l"`` \| ``"s-red-9-l"`` \| ``"s-green-1-l"`` \| ``"s-green-2-l"`` \| ``"s-green-3-l"`` \| ``"s-green-4-l"`` \| ``"s-green-5-l"`` \| ``"s-green-6-l"`` \| ``"s-green-7-l"`` \| ``"s-green-8-l"`` \| ``"s-green-9-l"`` \| ``"s-purple-1-l"`` \| ``"s-purple-2-l"`` \| ``"s-purple-3-l"`` \| ``"s-purple-4-l"`` \| ``"s-purple-5-l"`` \| ``"s-purple-6-l"`` \| ``"s-purple-7-l"`` \| ``"s-purple-8-l"`` \| ``"s-purple-9-l"`` \| ``"s-blue-1-d"`` \| ``"s-blue-2-d"`` \| ``"s-blue-3-d"`` \| ``"s-blue-4-d"`` \| ``"s-blue-5-d"`` \| ``"s-blue-6-d"`` \| ``"s-blue-7-d"`` \| ``"s-blue-8-d"`` \| ``"s-blue-9-d"`` \| ``"s-red-1-d"`` \| ``"s-red-2-d"`` \| ``"s-red-3-d"`` \| ``"s-red-4-d"`` \| ``"s-red-5-d"`` \| ``"s-red-6-d"`` \| ``"s-red-7-d"`` \| ``"s-red-8-d"`` \| ``"s-red-9-d"`` \| ``"s-green-1-d"`` \| ``"s-green-2-d"`` \| ``"s-green-3-d"`` \| ``"s-green-4-d"`` \| ``"s-green-5-d"`` \| ``"s-green-6-d"`` \| ``"s-green-7-d"`` \| ``"s-green-8-d"`` \| ``"s-green-9-d"`` \| ``"s-purple-1-d"`` \| ``"s-purple-2-d"`` \| ``"s-purple-3-d"`` \| ``"s-purple-4-d"`` \| ``"s-purple-5-d"`` \| ``"s-purple-6-d"`` \| ``"s-purple-7-d"`` \| ``"s-purple-8-d"`` \| ``"s-purple-9-d"``
+
+Valid sequential palette colour names
+
 ## Variables
 
 ### DivergentPalette
@@ -474,73 +599,3 @@ A map of divergent palette colour combination names to values
 
 This is implemented as an object rather than an enum because having tuples makes
 type safety easier.
-
-## Utilities
-
-### getColourName
-
-▸ **getColourName**(`hex`): `undefined` \| `ColourName`
-
-Get a colour's name.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `hex` | `string` | An RGB colour in hex format |
-
-#### Returns
-
-`undefined` \| `ColourName`
-
-A colour name string if there's a defined name for the passed hex code
-
-___
-
-### getLabelColour
-
-▸ **getLabelColour**(`hex`): `string`
-
-Get a colour suitable for use as a text label for a given colour.
-
-Some colours in the palette are not suitable for use as text colours
-because acceptable colour contrast ratios are different for text than
-for other visualisation elements. When using colour palettes generated
-by this library, use this function to ensure you've to an appropriate
-colour for text labels.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `hex` | `string` | An RGB color value in hex format |
-
-#### Returns
-
-`string`
-
-An RGB colour value in hex format
-
-___
-
-### getNamedColour
-
-▸ **getNamedColour**(`name`): `string`
-
-Get an RGB hex colour string for a named colour.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `name` | `ColourName` | A colour name for which to return the RGB hex colour string. |
-
-#### Returns
-
-`string`
-
-A hex colour string
-
-**`Throws`**
-
-An `Error` if the `name` passed in isn't a valid `ColourName`

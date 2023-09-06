@@ -15,6 +15,9 @@ Sequential, divergent and ordinal colour names follow a specific format:
 <palette type(s)>[-<base colour>]-<index>-<light/dark variant>
 */
 
+/**
+ * Valid political colour names
+ */
 export type PartyColourName =
 	| 'p-red-l'
 	| 'p-blue-l'
@@ -38,7 +41,9 @@ export type PartyColourName =
 	| 'p-aqua-d'
 	| 'p-orange-d'
 	| 'p-purple-d';
-
+/**
+ * Valid sequential palette colour names
+ */
 export type SequentialColourName =
 	| 'sd-0-l'
 	| 'so-10-l'
@@ -116,7 +121,9 @@ export type SequentialColourName =
 	| 's-purple-7-d'
 	| 's-purple-8-d'
 	| 's-purple-9-d';
-
+/**
+ * Valid divergent palette colour names
+ */
 export type DivergentColourName =
 	| 'sd-0-l'
 	| 'd-red-1-l'
@@ -221,6 +228,9 @@ export type DivergentColourName =
 	| 'd-green-9-d'
 	| 'd-green-10-d';
 
+/**
+ * Valid ordinal palette colour names
+ */
 export type OrdinalColourName =
 	| 'o-blue-1-l'
 	| 'o-blue-2-l'
@@ -257,6 +267,9 @@ export type OrdinalColourName =
 	| 'o-purple-4-d'
 	| 'so-10-d';
 
+/**
+ * Valid basic colour names
+ */
 export type BasicColourName =
 	| 'blue-l'
 	| 'midblue-l'
@@ -287,6 +300,10 @@ export type BasicColourName =
 	| 'lightgrey-d'
 	| 'taupe-d';
 
+/**
+ * All valid colour names used in palettes.
+ * *Note:* not all colours generated/exported by this library are named.
+ */
 export type ColourName =
 	| SequentialColourName
 	| DivergentColourName
