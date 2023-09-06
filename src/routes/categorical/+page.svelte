@@ -13,7 +13,6 @@
 	let ordinalPalette: OrdinalPalette = OrdinalPalette.Blue;
 	let mode: ColourMode = $theme === 'dark' ? ColourMode.Dark : ColourMode.Light;
 	$: mode = $theme === 'dark' ? ColourMode.Dark : ColourMode.Light;
-	$: console.log('mode :>> ', mode);
 </script>
 
 <h2 id="categorical">Categorical</h2>
