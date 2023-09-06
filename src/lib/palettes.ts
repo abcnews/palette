@@ -1,3 +1,4 @@
+import { color } from 'd3-color';
 import { getNamedColour } from './colours.js';
 import type {
 	ColourName,
@@ -377,7 +378,8 @@ export const getSequentialContinuousPaletteInterpolator = (
  * @param steps The number of steps [2-10] to use for the generated sequential stepped palette
  * @param variant The colour variant the returned palette should use
  * @param mode The colour mode (light/dark) the returned palette should use
- * @returns An array of `steps + 1` colour strings in `rgb(x,y,z)` format. The first colour should be used to represent the zero value.
+ * @returns An array of `steps + 1` colour strings in hex format. The first colour should be used to represent the zero value.
+ * @throws An error if any of the interpolated colours can't be converted to hex format.
  *
  * @group Sequential Palettes
  */
@@ -399,7 +401,11 @@ export const getSequentialSteppedPalette = (
 	const interpolator = piecewise(interpolateRgb, gradient);
 	const palette = new Array<string>(steps + 1).fill('').map((_, i) => {
 		const pct = i / steps;
-		return interpolator(pct);
+		const hex = color(interpolator(pct))?.formatHex();
+		if (typeof hex === 'undefined') {
+			throw new Error('Error generating ordinal categorical palette.');
+		}
+		return hex;
 	});
 	return palette;
 };
@@ -410,7 +416,8 @@ export const getSequentialSteppedPalette = (
  * @param steps The number of steps (2-5) to use for the generated ordinal palette
  * @param variant The colour variant the returned palette should use
  * @param mode The colour mode (light/dark) the returned palette should use
- * @returns An array of colour strings in `rgb(x,y,z)` format
+ * @returns An array of colour strings in hex format
+ * @throws An error if an interpolated colour can't be converted to hex format
  *
  * @group Categorical Palettes
  */
@@ -435,7 +442,11 @@ export const getOrdinalCategoricalPalette = (
 
 	const palette = new Array<string>(steps).fill('').map((_, i) => {
 		const pct = i / (steps - 1);
-		return interpolator(pct);
+		const hex = color(interpolator(pct))?.formatHex();
+		if (typeof hex === 'undefined') {
+			throw new Error('Error generating ordinal categorical palette.');
+		}
+		return hex;
 	});
 	return palette;
 };
@@ -463,7 +474,8 @@ export const getDivergentContinuousPaletteInterpolator = (
  * @param steps The number of steps [1-10] to use for each side of the generated divergent stepped palette
  * @param variant The colour variant the returned palette should use
  * @param mode The colour mode (light/dark) the returned palette should use
- * @returns An array of `steps * 2 + 1` colour strings in `rgb(x,y,z)` format. The middle colour should represent the neutral value.
+ * @returns An array of `steps * 2 + 1` colour strings in hex format. The middle colour should represent the neutral value.
+ * @throws An error if an interpolated colour can't be converted to hex format
  *
  * @group Divergent Palettes
  */
@@ -490,7 +502,11 @@ export const getDivergentSteppedPalette = (
 	const interpolator = piecewise(interpolateRgb, gradientColours);
 	const palette = new Array<string>(steps * 2 + 1).fill('').map((_, i) => {
 		const pct = i / (steps * 2);
-		return interpolator(pct);
+		const hex = color(interpolator(pct))?.formatHex();
+		if (typeof hex === 'undefined') {
+			throw new Error('Error generating divergent stepped palette.');
+		}
+		return hex;
 	});
 
 	return palette;
