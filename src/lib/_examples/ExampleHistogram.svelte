@@ -26,7 +26,7 @@
 			x="sales"
 			y="price"
 			xScale={scaleBand().paddingInner(0.02).round(true)}
-			xDomain={extent}
+			xDomain={typeof extent[0] === 'undefined' ? [0, 0] : extent}
 		>
 			<Svg>
 				<Histogram />

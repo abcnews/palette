@@ -1,14 +1,20 @@
 <script lang="ts">
 	import { scaleLinear } from 'd3-scale';
 	import { extent as getExtent } from 'd3-array';
-	import { getNominalCategoricalPalette } from '$lib/palettes.js';
+	import { getDefaultCategoricalPalette } from '$lib/palettes.js';
 
 	type Data = {
 		label: string;
 		value: number;
 	};
+
+	const getExtentOrZero = (data: Data[]): [number, number] => {
+		const ext = getExtent(data, (d: Data) => d.value);
+		return typeof ext[0] === 'undefined' || typeof ext[1] === 'undefined' ? [0, 0] : ext;
+	};
+
 	export let data: Data[];
-	export let extent: [number, number] = getExtent(data, (d: Data) => d.value);
+	export let extent: [number, number] = getExtentOrZero(data);
 
 	data.reduce(
 		(acc, d) => {
@@ -19,7 +25,7 @@
 
 	$: xScale = scaleLinear().domain(extent).range([0, width]);
 	let width = 0;
-	export let fill = getNominalCategoricalPalette(1)[0];
+	export let fill = getDefaultCategoricalPalette(1)[0];
 </script>
 
 <div bind:clientWidth={width}>

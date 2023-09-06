@@ -29,7 +29,7 @@
 	</thead>
 	<tbody>
 		{#each palette as colour, index}
-			{@const name = getColourName(colour)}
+			{@const name = getColourName(colour) || ''}
 			<tr>
 				<th><SwatchColourLabel {name} hex={colour} /></th>
 				{#each palette as _, catIdx}

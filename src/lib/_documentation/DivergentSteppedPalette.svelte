@@ -6,7 +6,7 @@
 	export let mode: ColourMode;
 
 	$: lengths = new Array<string[]>(10)
-		.fill(undefined)
+		.fill([''])
 		.map((_, i) => getDivergentSteppedPalette(10 - i, palette, mode));
 
 	let height = 50;
@@ -63,7 +63,7 @@
 								fill={colourLuminance(colourStr) > 0.179 ? '#000' : '#fff'}
 								font-size="0.8em"
 								text-anchor="middle"
-								dominant-baseline="central">{color(colourStr).formatHex()}</text
+								dominant-baseline="central">{color(colourStr)?.formatHex()}</text
 							>
 						</g>
 					{:else if i === Math.floor(colours.length / 2)}
@@ -79,7 +79,7 @@
 								fill={colourLuminance(colourStr) > 0.179 ? '#000' : '#fff'}
 								font-size="0.8em"
 								text-anchor="middle"
-								dominant-baseline="central">{color(colourStr).formatHex()}</text
+								dominant-baseline="central">{color(colourStr)?.formatHex()}</text
 							>
 						</g>
 					{:else}
@@ -91,7 +91,7 @@
 								fill={colourLuminance(colourStr) > 0.179 ? '#000' : '#fff'}
 								font-size="0.8em"
 								text-anchor="middle"
-								dominant-baseline="central">{color(colourStr).formatHex()}</text
+								dominant-baseline="central">{color(colourStr)?.formatHex()}</text
 							>
 						</g>
 					{/if}

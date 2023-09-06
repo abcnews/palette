@@ -2,7 +2,7 @@
 	"name": "@abcnews/palette",
 	"version": "1.0.0-4",
 	"scripts": {
-		"dev": "vite dev & svelte-package --watch",
+		"dev": "concurrently \"vite dev\" \"svelte-package --watch\"",
 		"build": "vite build",
 		"preview": "vite preview",
 		"package": "svelte-package",
@@ -30,6 +30,7 @@
 		"@types/d3-dsv": "^3.0.0",
 		"@types/d3-interpolate": "^3.0.1",
 		"@types/d3-scale": "^4.0.2",
+		"concurrently": "^8.2.1",
 		"d3-array": "^3.1.1",
 		"d3-color": "^3.1.0",
 		"d3-dsv": "^3.0.1",

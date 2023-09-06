@@ -397,7 +397,7 @@ export const getSequentialSteppedPalette = (
 		.map(getNamedColour);
 
 	const interpolator = piecewise(interpolateRgb, gradient);
-	const palette = new Array<string>(steps + 1).fill(undefined).map((_, i) => {
+	const palette = new Array<string>(steps + 1).fill('').map((_, i) => {
 		const pct = i / steps;
 		return interpolator(pct);
 	});
@@ -433,7 +433,7 @@ export const getOrdinalCategoricalPalette = (
 
 	const interpolator = piecewise(interpolateRgb, gradient);
 
-	const palette = new Array<string>(steps).fill(undefined).map((_, i) => {
+	const palette = new Array<string>(steps).fill('').map((_, i) => {
 		const pct = i / (steps - 1);
 		return interpolator(pct);
 	});
@@ -488,7 +488,7 @@ export const getDivergentSteppedPalette = (
 	);
 	const gradientColours = gradient.map(getNamedColour);
 	const interpolator = piecewise(interpolateRgb, gradientColours);
-	const palette = new Array<string>(steps * 2 + 1).fill(undefined).map((_, i) => {
+	const palette = new Array<string>(steps * 2 + 1).fill('').map((_, i) => {
 		const pct = i / (steps * 2);
 		return interpolator(pct);
 	});

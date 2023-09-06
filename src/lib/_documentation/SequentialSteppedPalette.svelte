@@ -5,7 +5,7 @@
 	export let palette: SequentialPalette;
 	export let mode: ColourMode;
 	$: lengths = new Array<string[]>(9)
-		.fill(undefined)
+		.fill([''])
 		.map((_, i) => getSequentialSteppedPalette(10 - i, palette, mode));
 </script>
 
@@ -20,7 +20,7 @@
 						colourLuminance(colourStr) > 0.179 ? '#000' : '#fff'
 					};`}
 				>
-					{color(colourStr).formatHex()}
+					{color(colourStr)?.formatHex()}
 				</div>
 			{/each}
 		</div>

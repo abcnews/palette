@@ -16,7 +16,7 @@
 	</thead>
 	<tbody>
 		{#each palette as { colour, usage }, index}
-			{@const name = getColourName(colour)}
+			{@const name = getColourName(colour) || ''}
 			<tr>
 				<td>{usage}</td>
 				<td><Swatch {colour} /></td>
