@@ -394,8 +394,15 @@ export const getSequentialSteppedPalette = (
 		throw new Error('Stepped palettes can have between two and ten steps.');
 	}
 
+	// The offset is used to drop extremes at the end of the defined gradient where there
+	// are only a small number of steps. So a palette with 5 (or more) steps above zero
+	// will use the whole gradient, and palettes with a smaller number of steps will
+	// progressively drop colours from the end of the defined gradient before generating
+	// the palette.
+	const OFFSET = 6;
+
 	const gradient = getSequentialPalette(variant, mode)
-		.slice(0, Math.min(steps + 6, MAX_STEPS + 1))
+		.slice(0, Math.min(steps + OFFSET, MAX_STEPS + 1))
 		.map(getNamedColour);
 
 	const interpolator = piecewise(interpolateRgb, gradient);
@@ -492,6 +499,10 @@ export const getDivergentSteppedPalette = (
 		);
 	}
 
+	// The offset is used to drop extremes at each end of the defined gradient where there
+	// are only a small number of steps. So a palette with 3 (or more) steps on each side
+	// of neutral will use the whole gradient, while 2 and 1 will progressively drop one
+	// colour from each end of the defined gradient before generating the stepped palette.
 	const OFFSET = 7;
 
 	const gradient = getDivergentPalette(variant, mode).slice(
