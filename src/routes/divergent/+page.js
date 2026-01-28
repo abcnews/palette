@@ -6,6 +6,6 @@ export async function load({ fetch }) {
 		const data = parseGlobalAverageTemperatureCsv(txt);
 		return { globalAverageTemperature: data };
 	} catch (e) {
-		throw error(500, `Could not load data: ${e.message}`);
+		error(500, `Could not load data: ${e.message}`);
 	}
 }
