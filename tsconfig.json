@@ -2,7 +2,7 @@
 	"extends": "./.svelte-kit/tsconfig.json",
 	"compilerOptions": {
 		"moduleResolution": "NodeNext",
-		"module": "es2020",
+		"module": "nodenext",
 		"lib": ["es2020", "DOM"],
 		"target": "es2020",
 		"resolveJsonModule": true,
@@ -12,6 +12,7 @@
 			*/
 		"sourceMap": true,
 		"esModuleInterop": true,
-		"strictNullChecks": true
+		"strictNullChecks": true,
+		"skipLibCheck": true
 	}
 }
