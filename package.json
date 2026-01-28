@@ -16,7 +16,7 @@
 		"generate-docs": "svelte-kit sync && typedoc"
 	},
 	"engines": {
-		"node": ">=24"
+		"node": ">=18"
 	},
 	"np": {
 		"branch": "main",
