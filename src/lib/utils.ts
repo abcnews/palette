@@ -1,5 +1,5 @@
 import { DivergentPalette, SequentialPalette } from './palettes.js';
-import { color } from 'd3-color';
+import { color, type HSLColor, type RGBColor } from 'd3-color';
 
 export const isSequentialPalette = (palette: string | string[]): palette is SequentialPalette =>
 	typeof palette === 'string' && Object.values<string>(SequentialPalette).includes(palette);
@@ -11,9 +11,10 @@ export const isDivergentPalette = (palette: string | string[]): palette is Diver
 	);
 
 export const colourLuminance = (c: string) => {
-	const rgb = color(c);
+	const rgb = color(c)?.rgb();
 	if (!rgb) throw new Error('Colour is not a valid CSS Level 3 colour specifier string.');
-	const l = ['r', 'g', 'b']
+	const components: (keyof Pick<RGBColor, 'r' | 'g' | 'b'>)[] = ['r', 'g', 'b'];
+	const l = components
 		.map((d) => {
 			const ratio = rgb[d] / 255;
 			const v = ratio <= 0.04045 ? ratio / 12.92 : ((ratio + 0.055) / 1.055) ** 2.4;
