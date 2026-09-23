@@ -19,9 +19,9 @@ input data.
 
 ### palette
 
-The colour and type of palette for which to generate a scale function
+[`DivergentPalette`](../type-aliases/DivergentPalette.md) \| [`SequentialPalette`](../enumerations/SequentialPalette.md)
 
-[`DivergentPalette`](../type-aliases/DivergentPalette.md) | [`SequentialPalette`](../enumerations/SequentialPalette.md)
+The colour and type of palette for which to generate a scale function
 
 ### mode
 
@@ -31,9 +31,9 @@ The page colour mode (light/dark) the generated scale function should be suitabl
 
 ### domain
 
-The domain used by the scale function. Sequential palettes must have a domain of length two and divergent palettes must be three.
+\[`number`, `number`, `number`\] \| \[`number`, `number`\]
 
-\[`number`, `number`, `number`\] | \[`number`, `number`\]
+The domain used by the scale function. Sequential palettes must have a domain of length two and divergent palettes must be three.
 
 ## Returns
 

@@ -6,7 +6,7 @@
 
 # Function: getSequentialSteppedPalette()
 
-> **getSequentialSteppedPalette**(`steps`, `variant`, `mode`): `string`[]
+> **getSequentialSteppedPalette**(`steps`, `variant?`, `mode?`): `string`[]
 
 Get an array of colours that define a sequential stepped palette with the given params.
 
@@ -18,13 +18,13 @@ Get an array of colours that define a sequential stepped palette with the given 
 
 The number of steps [2-10] to use for the generated sequential stepped palette
 
-### variant
+### variant?
 
 [`SequentialPalette`](../enumerations/SequentialPalette.md) = `SequentialPalette.Blue`
 
 The colour variant the returned palette should use
 
-### mode
+### mode?
 
 [`ColourMode`](../enumerations/ColourMode.md) = `ColourMode.Light`
 

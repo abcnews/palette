@@ -6,7 +6,7 @@
 
 # Function: getDefaultCategoricalPalette()
 
-> **getDefaultCategoricalPalette**(`n`, `mode`): `string`[]
+> **getDefaultCategoricalPalette**(`n`, `mode?`): `string`[]
 
 Get a colour palette suitable for use visualisation categorical data.
 
@@ -18,7 +18,7 @@ Get a colour palette suitable for use visualisation categorical data.
 
 The number of categories [1-8] for which to get a colour palette
 
-### mode
+### mode?
 
 [`ColourMode`](../enumerations/ColourMode.md) = `ColourMode.Light`
 

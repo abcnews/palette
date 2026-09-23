@@ -6,7 +6,7 @@
 
 # Function: getFocusCategoricalPalette()
 
-> **getFocusCategoricalPalette**(`n`, `mode`): `object`
+> **getFocusCategoricalPalette**(`n`, `mode?`): `object`
 
 Get a colour palette suitable for use visualisation categorical data with focus on a single element.
 
@@ -18,7 +18,7 @@ Get a colour palette suitable for use visualisation categorical data with focus 
 
 The number of categories (excluding emphasis colours) [1-3] for which to get a colour palette
 
-### mode
+### mode?
 
 [`ColourMode`](../enumerations/ColourMode.md) = `ColourMode.Light`
 

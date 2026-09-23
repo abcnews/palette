@@ -6,7 +6,7 @@
 
 # Function: getSentimentPalette()
 
-> **getSentimentPalette**(`n`, `mode`): [`SentimentPalette`](../type-aliases/SentimentPalette.md)
+> **getSentimentPalette**(`n`, `mode?`): [`SentimentPalette`](../type-aliases/SentimentPalette.md)
 
 Get a colour palette suitable for visualising sentiment
 
@@ -18,7 +18,7 @@ Get a colour palette suitable for visualising sentiment
 
 The number of positive/negative sentiment levels [1-3]
 
-### mode
+### mode?
 
 [`ColourMode`](../enumerations/ColourMode.md) = `ColourMode.Light`
 

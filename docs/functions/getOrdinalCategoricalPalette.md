@@ -6,7 +6,7 @@
 
 # Function: getOrdinalCategoricalPalette()
 
-> **getOrdinalCategoricalPalette**(`steps`, `variant`, `mode`): `string`[]
+> **getOrdinalCategoricalPalette**(`steps`, `variant?`, `mode?`): `string`[]
 
 Get an ordinal categorical palette with the given params.
 
@@ -18,13 +18,13 @@ Get an ordinal categorical palette with the given params.
 
 The number of steps (2-5) to use for the generated ordinal palette
 
-### variant
+### variant?
 
 [`OrdinalPalette`](../enumerations/OrdinalPalette.md) = `OrdinalPalette.Blue`
 
 The colour variant the returned palette should use
 
-### mode
+### mode?
 
 [`ColourMode`](../enumerations/ColourMode.md) = `ColourMode.Light`
 

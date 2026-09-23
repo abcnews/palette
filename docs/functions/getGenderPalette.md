@@ -6,13 +6,13 @@
 
 # Function: getGenderPalette()
 
-> **getGenderPalette**(`mode`): `Record`\<`string`, [`ColourWithUsage`](../type-aliases/ColourWithUsage.md)\>
+> **getGenderPalette**(`mode?`): `Record`\<`string`, [`ColourWithUsage`](../type-aliases/ColourWithUsage.md)\>
 
 Get a colour palette suitable for visualising gender
 
 ## Parameters
 
-### mode
+### mode?
 
 [`ColourMode`](../enumerations/ColourMode.md) = `ColourMode.Light`
 

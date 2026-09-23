@@ -6,7 +6,7 @@
 
 # Function: getDivergentSteppedPalette()
 
-> **getDivergentSteppedPalette**(`steps`, `variant`, `mode`): `string`[]
+> **getDivergentSteppedPalette**(`steps`, `variant?`, `mode?`): `string`[]
 
 Get an array of colours that define a divergent stepped palette with the given params.
 
@@ -18,13 +18,13 @@ Get an array of colours that define a divergent stepped palette with the given p
 
 The number of steps [1-10] to use for each side of the generated divergent stepped palette
 
-### variant
+### variant?
 
 [`DivergentPalette`](../type-aliases/DivergentPalette.md) = `DivergentPalette.RedBlue`
 
 The colour variant the returned palette should use
 
-### mode
+### mode?
 
 [`ColourMode`](../enumerations/ColourMode.md) = `ColourMode.Light`
 

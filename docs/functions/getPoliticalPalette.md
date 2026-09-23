@@ -6,13 +6,13 @@
 
 # Function: getPoliticalPalette()
 
-> **getPoliticalPalette**(`mode`): `Map`\<[`PoliticalColour`](../type-aliases/PoliticalColour.md), [`ColourWithUsage`](../type-aliases/ColourWithUsage.md)\>
+> **getPoliticalPalette**(`mode?`): `Map`\<[`PoliticalColour`](../type-aliases/PoliticalColour.md), [`ColourWithUsage`](../type-aliases/ColourWithUsage.md)\>
 
 Get a colour palette suitable for visualising political parties.
 
 ## Parameters
 
-### mode
+### mode?
 
 [`ColourMode`](../enumerations/ColourMode.md) = `ColourMode.Light`
 
