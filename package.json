@@ -24,13 +24,11 @@
 		},
 		"git": {
 			"requireBranch": "main",
-			"tagName": "v${version}",
-			"commitMessage": "Release v${version}",
-			"tagAnnotation": "Release v${version}"
+			"tagName": "${version}"
 		},
 		"github": {
 			"release": true,
-			"releaseName": "v${version}",
+			"releaseName": "${version}",
 			"autoGenerate": true
 		}
 	},
