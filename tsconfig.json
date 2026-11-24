@@ -1,18 +1,13 @@
 {
-	"extends": "./.svelte-kit/tsconfig.json",
+	"extends": "$app/tsconfig",
+	"include": ["src", "test", "*"],
+	"exclude": ["src/service-worker"],
 	"compilerOptions": {
-		"moduleResolution": "NodeNext",
-		"module": "nodenext",
-		"lib": ["es2020", "DOM"],
-		"target": "es2020",
-		"resolveJsonModule": true,
 		/**
 			To have warnings/errors of the Svelte compiler at the correct position,
 			enable source maps by default.
 			*/
 		"sourceMap": true,
-		"esModuleInterop": true,
-		"strictNullChecks": true,
-		"skipLibCheck": true
+		"strictNullChecks": true
 	}
 }

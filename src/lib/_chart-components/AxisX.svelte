@@ -3,9 +3,11 @@
 	const { width, height, xScale, yRange } = getContext('LayerCake');
 	export let gridlines = true;
 	export let tickMarks = false;
+	/** @type {(tick: any) => string | number} */
 	export let formatTick = (d) => d;
 	export let baseline = false;
 	export let snapTicks = false;
+	/** @type {any[] | number | ((defaultTicks: any[]) => any[]) | undefined} */
 	export let ticks = undefined;
 	export let xTick = undefined;
 	export let yTick = 16;
@@ -15,10 +17,11 @@
 	$: tickVals = Array.isArray(ticks)
 		? ticks
 		: isBandwidth
-		? $xScale.domain()
-		: typeof ticks === 'function'
-		? ticks($xScale.ticks())
-		: $xScale.ticks(ticks);
+			? $xScale.domain()
+			: typeof ticks === 'function'
+				? ticks($xScale.ticks())
+				: $xScale.ticks(ticks);
+	/** @param {number} i */
 	function textAnchor(i) {
 		if (snapTicks === true) {
 			if (i === 0) {
