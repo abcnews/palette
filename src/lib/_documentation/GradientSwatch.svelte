@@ -20,10 +20,10 @@
 
 	let canvas: HTMLCanvasElement;
 
-	const draw = (ctx, scale) => {
-		var i = 0;
-
-		for (var n = 0; n < 1000; n++) {
+	/** Paints the scale across 1000 one-pixel steps */
+	const draw = (ctx: CanvasRenderingContext2D | null, scale: (n: number) => string) => {
+		if (!ctx) return;
+		for (let n = 0; n < 1000; n++) {
 			ctx.fillStyle = scale(n);
 			orientation === 'h' ? ctx.fillRect(n, 0, 1, 10) : ctx.fillRect(0, n, 10, 1);
 		}

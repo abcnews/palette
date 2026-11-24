@@ -6,13 +6,13 @@
 
 	let canvas: HTMLCanvasElement;
 
-	const draw = (ctx, scale) => {
-		var i = 0;
-
-		for (const d of data) {
+	/** Paints one pixel-wide stripe per data point */
+	const draw = (ctx: CanvasRenderingContext2D | null, scale: (i: number) => string) => {
+		if (!ctx) return;
+		data.forEach((d, i) => {
 			ctx.fillStyle = scale(d.value);
-			ctx.fillRect(i++, 0, 1, 1);
-		}
+			ctx.fillRect(i, 0, 1, 1);
+		});
 	};
 
 	$: canvas && draw(canvas.getContext('2d'), scale);
